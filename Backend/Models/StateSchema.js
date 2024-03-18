@@ -7,14 +7,14 @@ const stateSchema = mongoose.Schema({
         Image: String,
         Attraction_Description: String,
         Location: String,
-        Type_of_Attraction: String
+        Attraction_Type: String
     }],
     Iso2: {type: String, required: [true, "Please add the ISO2 code of the state"]},
-    Latitude: {type: String},
-    Longitude: {type: String},
-    Iage: {type: String,required: [true, "Please add image link of the State"]},
+    Latitude: {type: Number},
+    Longitude: {type: Number},
+    Image: {type: String,required: [true, "Please add image link of the State"]},
     Description: {type: String,required: [true, "Please add the description about the state"]},
-    Iframe_src: {type: String}
+    Iframe_Src: {type: String}
 
 })
 
