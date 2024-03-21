@@ -19,7 +19,7 @@ const Home = () => {
         <img
           className="top-50 l-200 z-10 w-[30rem] h-96"
           src={Subline}
-          alt="RoamIndia"
+          alt="RoamIndia Subheading"
         />
         <button className="btn btn-wide bg-black text-white">
           DISCOVER YOUR JOURNEY
@@ -43,7 +43,7 @@ const Home = () => {
       </div>
       <div className="carousel w-screen h-[28rem]">
         <div id="slide1" className="carousel-item relative w-full">
-          <img src={CarouselImage1} className="w-full" />
+          <img src={CarouselImage1} className="w-full" alt="Carousel"/>
 
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
             <a href="#slide3" className="btn btn-circle">
@@ -55,7 +55,7 @@ const Home = () => {
           </div>
         </div>
         <div id="slide2" className="carousel-item relative w-full">
-          <img src={CarouselImage2} className="w-full" />
+          <img src={CarouselImage2} className="w-full" alt="Carousel"/>
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
             <a href="#slide1" className="btn btn-circle">
               ❮
@@ -66,7 +66,7 @@ const Home = () => {
           </div>
         </div>
         <div id="slide3" className="carousel-item relative w-full">
-          <img src={CarouselImage3} className="w-full" />
+          <img src={CarouselImage3} className="w-full" alt="Carousel"/>
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
             <a href="#slide2" className="btn btn-circle">
               ❮
