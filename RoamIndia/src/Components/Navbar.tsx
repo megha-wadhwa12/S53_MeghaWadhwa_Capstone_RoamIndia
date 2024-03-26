@@ -3,7 +3,7 @@ import Logo from "./../assets/RoamIndiaLogo.png";
 import "tailwindcss/tailwind.css";
 import "daisyui/dist/full.css";
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   return (
     <div className="bg-white">
       <div className="navbar bg-white ">
@@ -65,32 +65,10 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <div className="py-6 w-25 ">
-          {/* <span> */}
-          <a
-            href="#"
-            className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-          >
-            Log in
-              </a>
-            {/* </span> */}
-            <span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="black"
-                className="w-6 h-6 m-2"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
-                />
-              </svg>
-            </span>
-        </div>
+        <button className="inline-flex text-white h-24 py-2.5 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-white-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+          Sign up
+        </button>
+
       </div>
     </div>
   );
