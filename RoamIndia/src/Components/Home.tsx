@@ -2,26 +2,43 @@ import React from "react";
 import CarouselImage1 from "./../assets/Banner1.png"; // Import carousel images
 import CarouselImage2 from "../assets/Banner2.png";
 import CarouselImage3 from "../assets/Banner3.png";
-import RoamIndia from "../assets/RoamIndiaText.png";
+// import RoamIndia from "../assets/RoamIndiaText.png";
 import Subline from "../assets/Subline.png";
 import Navbar from "./Navbar";
+import { TypewriterEffect } from './TypeWriterEffect'
+import AboutUs from "./AboutUs";
+import TrendingDestinations from "./TrendingDestinations";
 
-const Home = () => {
+
+const Home: React.FC = () => {
+  const words = [
+    {
+      text: "ROAM",
+      className: "text-black-500 dark:text-white-500 asul-regular text-white",
+
+    },
+    {
+      text: "INDIA",
+      className: "text-black-500 dark:text-white-500 asul-regular text-white",
+
+    },
+  ];
   return (
     <div>
       <Navbar />
       <div className="absolute flex flex-col gap-6 justify-center right-20 items-center w-7/12 h-[22rem] z-10">
-        <img
+        {/* <img
           className="top-50 l-200 z-10 w-[30rem] h-96"
           src={RoamIndia}
           alt="RoamIndia"
-        />
+        /> */}.
+            <TypewriterEffect words={words} cursorClassName="block rounded-sm w-[4px]  h-4 sm:h-6 xl:h-12 bg-blue-500"/>
         <img
           className="top-50 l-200 z-10 w-[30rem] h-96"
           src={Subline}
-          alt="RoamIndia Subheading"
+          alt="RoamIndia"
         />
-        <button className="btn btn-wide bg-black text-white">
+        <button className="btn btn-wide bg-black text-white ">
           DISCOVER YOUR JOURNEY
           <span>
             <svg
@@ -43,7 +60,7 @@ const Home = () => {
       </div>
       <div className="carousel w-screen h-[28rem]">
         <div id="slide1" className="carousel-item relative w-full">
-          <img src={CarouselImage1} className="w-full" alt="Carousel"/>
+          <img src={CarouselImage1} className="w-full" />
 
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
             <a href="#slide3" className="btn btn-circle">
@@ -55,7 +72,7 @@ const Home = () => {
           </div>
         </div>
         <div id="slide2" className="carousel-item relative w-full">
-          <img src={CarouselImage2} className="w-full" alt="Carousel"/>
+          <img src={CarouselImage2} className="w-full" />
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
             <a href="#slide1" className="btn btn-circle">
               ❮
@@ -66,7 +83,7 @@ const Home = () => {
           </div>
         </div>
         <div id="slide3" className="carousel-item relative w-full">
-          <img src={CarouselImage3} className="w-full" alt="Carousel"/>
+          <img src={CarouselImage3} className="w-full" />
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
             <a href="#slide2" className="btn btn-circle">
               ❮
@@ -77,6 +94,8 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <TrendingDestinations />
+      <AboutUs />
     </div>
   );
 };
