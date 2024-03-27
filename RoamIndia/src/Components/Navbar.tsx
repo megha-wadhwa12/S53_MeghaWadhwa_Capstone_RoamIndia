@@ -5,8 +5,8 @@ import "daisyui/dist/full.css";
 
 const Navbar: React.FC = () => {
   return (
-    <div className="bg-white">
-      <div className="navbar bg-white ">
+    <div>
+      <div className="navbar">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -27,7 +27,7 @@ const Navbar: React.FC = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow  rounded-box w-52"
             >
               <li>
                 <a>About</a>

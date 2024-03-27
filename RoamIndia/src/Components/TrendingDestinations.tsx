@@ -35,12 +35,12 @@ const TrendingDestinations: React.FC = () => {
         },
     ];
     return (
-        <div className='bg-white pt-20 px-20'>
+        <div className=' pt-20 px-20'>
             <div className='flex justify-between'>
-                <h1 className='text-[#24758F] text-3xl asul-regular'>Trending Destinations</h1>
+                <h1 className='text-[#0C3A25] text-3xl asul-regular'>Trending Destinations</h1>
                 <button className='btn text-white'>View All Destinations</button>
             </div>
-            <div className="h-[25rem] rounded-md flex flex-col antialiased bg-white items-center justify-center relative overflow-hidden">
+            <div className="h-[25rem] rounded-md flex flex-col antialiased items-center justify-center relative overflow-hidden">
                 <InfiniteMovingCards
                     items={testimonials}
                     direction="right"

@@ -8,7 +8,8 @@ import Navbar from "./Navbar";
 import { TypewriterEffect } from './TypeWriterEffect'
 import AboutUs from "./AboutUs";
 import TrendingDestinations from "./TrendingDestinations";
-
+import TopAttractions from "./TopAttractions";
+import Footer from "./Footer";
 
 const Home: React.FC = () => {
   const words = [
@@ -24,7 +25,8 @@ const Home: React.FC = () => {
     },
   ];
   return (
-    <div>
+    <div className="
+    bg-white">
       <Navbar />
       <div className="absolute flex flex-col gap-6 justify-center right-20 items-center w-7/12 h-[22rem] z-10">
         {/* <img
@@ -32,7 +34,7 @@ const Home: React.FC = () => {
           src={RoamIndia}
           alt="RoamIndia"
         /> */}.
-            <TypewriterEffect words={words} cursorClassName="block rounded-sm w-[4px]  h-4 sm:h-6 xl:h-12 bg-blue-500"/>
+        <TypewriterEffect words={words} cursorClassName="block rounded-sm w-[4px]  h-4 sm:h-6 xl:h-12 bg-blue-500" />
         <img
           className="top-50 l-200 z-10 w-[30rem] h-96"
           src={Subline}
@@ -96,6 +98,8 @@ const Home: React.FC = () => {
       </div>
       <TrendingDestinations />
       <AboutUs />
+      <TopAttractions />
+      <Footer />
     </div>
   );
 };
