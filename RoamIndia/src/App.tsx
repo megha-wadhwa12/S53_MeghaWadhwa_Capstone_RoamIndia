@@ -1,10 +1,12 @@
 import './App.css'
-import Home from './Components/Home'
+import AllRoutes from './Components/AllRoutes'
+// import Home from './Components/Home'
 function App() {
 
   return (
     <>
-    <Home />
+    <AllRoutes />
+    {/* <Home /> */}
     </>
   )
 }

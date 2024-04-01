@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import CarouselImage1 from "./../assets/Banner1.png"; // Import carousel images
 import CarouselImage2 from "../assets/Banner2.png";
 import CarouselImage3 from "../assets/Banner3.png";
@@ -10,8 +10,18 @@ import AboutUs from "./AboutUs";
 import TrendingDestinations from "./TrendingDestinations";
 import TopAttractions from "./TopAttractions";
 import Footer from "./Footer";
+// import { useNavigate } from "react-router-dom";
 
 const Home: React.FC = () => {
+  // const Navigate = useNavigate();
+  const DiscoverRef = useRef(null)
+
+  const handleClick = () => {
+    if(DiscoverRef.current){
+      DiscoverRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   const words = [
     {
       text: "ROAM",
@@ -40,7 +50,7 @@ const Home: React.FC = () => {
           src={Subline}
           alt="RoamIndia"
         />
-        <button className="btn btn-wide bg-black text-white ">
+        <button className="btn btn-wide bg-black text-white" onClick={()=>handleClick()}>
           DISCOVER YOUR JOURNEY
           <span>
             <svg
@@ -98,7 +108,9 @@ const Home: React.FC = () => {
       </div>
       <TrendingDestinations />
       <AboutUs />
-      <TopAttractions />
+      <div ref={DiscoverRef}>
+      <TopAttractions/>
+      </div>
       <Footer />
     </div>
   );
