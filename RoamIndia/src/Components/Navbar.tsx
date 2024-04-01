@@ -2,6 +2,7 @@ import React from "react";
 import Logo from "./../assets/RoamIndiaLogo.png";
 import "tailwindcss/tailwind.css";
 import "daisyui/dist/full.css";
+import { Link } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   return (
@@ -9,7 +10,7 @@ const Navbar: React.FC = () => {
       <div className="navbar">
         <div className="navbar-start">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <div tabIndex={20} role="button" className="btn btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -44,7 +45,9 @@ const Navbar: React.FC = () => {
             </ul>
           </div>
           {/* <a className="btn btn-ghost text-xl">daisyUI</a> */}
-          <img src={Logo} alt="Logo" className="w-20" />
+          <Link to={"/"}>
+            <img src={Logo} alt="Logo" className="w-20" />
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-black text-lg jacques-francois-regular">
@@ -54,12 +57,16 @@ const Navbar: React.FC = () => {
             <li>
               <a>Contact Us</a>
             </li>
-            <li>
-              <a>Restaurants</a>
-            </li>
-            <li>
+            <Link to={"/restaurants"}>
+              <li>
+                <a>Restaurants</a>
+              </li>
+              </Link>
+              <Link to={"/hotels"}>
+              <li>
               <a>Hotels</a>
             </li>
+            </Link>
             <li>
               <a></a>
             </li>

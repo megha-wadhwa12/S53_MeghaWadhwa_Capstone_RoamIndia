@@ -6,6 +6,7 @@ import ArunachalPradesh from './../assets/ArunachalPradesh.png'
 import Delhi from './../assets/Delhi.png'
 import TamilNadu from './../assets/TamilNadu.png'
 import Goa from './../assets/Goa.png'
+import { Link } from 'react-router-dom'
 
 const TrendingDestinations: React.FC = () => {
     const testimonials = [
@@ -38,7 +39,7 @@ const TrendingDestinations: React.FC = () => {
         <div className=' pt-20 px-20'>
             <div className='flex justify-between'>
                 <h1 className='text-[#0C3A25] text-3xl asul-regular'>Trending Destinations</h1>
-                <button className='btn text-white'>View All Destinations</button>
+                <Link to="/alldestinations"><button className='btn text-white'>View All Destinations</button></Link>
             </div>
             <div className="h-[25rem] rounded-md flex flex-col antialiased items-center justify-center relative overflow-hidden">
                 <InfiniteMovingCards
