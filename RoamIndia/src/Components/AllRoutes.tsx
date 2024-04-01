@@ -29,7 +29,6 @@ const AllRoutes: React.FC = () => {
         <Route path="/alldestinations" element={<AllDestinations />} />     
         <Route path="/addplaceform" element={<AddNewPlaceForm />} />      
         <Route path="/addplace" element={<AddNewPlace />} />     
-        <Route path="/addplace" element={<AddNewPlace />} />     
         <Route path="/place" element={<Place />} />     
         <Route path="/attraction" element={<Attraction />} />     
         <Route path="/notfound" element={<PageNotFound />} />     

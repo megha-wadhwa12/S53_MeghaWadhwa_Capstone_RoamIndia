@@ -17,7 +17,9 @@ const Home: React.FC = () => {
   const DiscoverRef = useRef(null)
 
   const handleClick = () => {
-    DiscoverRef.current.scrollIntoView({ behavior: "smooth" });
+    if(DiscoverRef.current){
+      DiscoverRef.current.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   const words = [
