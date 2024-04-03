@@ -9,6 +9,7 @@ export default {
   theme: {
     fontFamily: {
       navbar: ["Jacques Francois"],
+      lifelong: ["Bentham"]
     },
     height: {
       128: "12rem",

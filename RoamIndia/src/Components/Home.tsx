@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import CarouselImage1 from "./../assets/Banner1.png"; // Import carousel images
 import CarouselImage2 from "../assets/Banner2.png";
 import CarouselImage3 from "../assets/Banner3.png";
@@ -10,15 +10,18 @@ import AboutUs from "./AboutUs";
 import TrendingDestinations from "./TrendingDestinations";
 import TopAttractions from "./TopAttractions";
 import Footer from "./Footer";
+// import { AppContext } from "../Context/ParentContext";
 // import { useNavigate } from "react-router-dom";
 
 const Home: React.FC = () => {
   // const Navigate = useNavigate();
-  const DiscoverRef = useRef(null)
+  const DiscoverRef = useRef<HTMLDivElement>(null)
+  // const { aboutRef } = useContext(AppContext)
+
 
   const handleClick = () => {
     if(DiscoverRef.current){
-      DiscoverRef.current.scrollIntoView({ behavior: "smooth" });
+      (DiscoverRef.current as HTMLDivElement).scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -107,7 +110,9 @@ const Home: React.FC = () => {
         </div>
       </div>
       <TrendingDestinations />
-      <AboutUs />
+      <div ref={aboutRef}>
+        <AboutUs />
+      </div>
       <div ref={DiscoverRef}>
       <TopAttractions/>
       </div>
