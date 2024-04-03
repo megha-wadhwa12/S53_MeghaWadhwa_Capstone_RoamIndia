@@ -10,15 +10,14 @@ import AboutUs from "./AboutUs";
 import TrendingDestinations from "./TrendingDestinations";
 import TopAttractions from "./TopAttractions";
 import Footer from "./Footer";
-// import { useNavigate } from "react-router-dom";
 
 const Home: React.FC = () => {
-  // const Navigate = useNavigate();
-  const DiscoverRef = useRef(null)
+  const DiscoverRef = useRef<HTMLDivElement>(null)
+
 
   const handleClick = () => {
     if(DiscoverRef.current){
-      DiscoverRef.current.scrollIntoView({ behavior: "smooth" });
+      (DiscoverRef.current as HTMLDivElement).scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -107,7 +106,9 @@ const Home: React.FC = () => {
         </div>
       </div>
       <TrendingDestinations />
-      <AboutUs />
+      <div ref={aboutRef}>
+        <AboutUs />
+      </div>
       <div ref={DiscoverRef}>
       <TopAttractions/>
       </div>

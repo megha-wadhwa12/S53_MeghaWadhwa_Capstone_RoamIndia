@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext, useRef } from "react";
 import Logo from "./../assets/RoamIndiaLogo.png";
 import "tailwindcss/tailwind.css";
 import "daisyui/dist/full.css";
 import { Link } from "react-router-dom";
 
 const Navbar: React.FC = () => {
+
   return (
     <div>
       <div className="navbar">
@@ -61,11 +62,11 @@ const Navbar: React.FC = () => {
               <li>
                 <a>Restaurants</a>
               </li>
-              </Link>
-              <Link to={"/hotels"}>
+            </Link>
+            <Link to={"/hotels"}>
               <li>
-              <a>Hotels</a>
-            </li>
+                <a>Hotels</a>
+              </li>
             </Link>
             <li>
               <a></a>
