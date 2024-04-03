@@ -3,12 +3,8 @@ import Logo from "./../assets/RoamIndiaLogo.png";
 import "tailwindcss/tailwind.css";
 import "daisyui/dist/full.css";
 import { Link } from "react-router-dom";
-// import { AppContext } from "../Context/ParentContext";
-// import { AppContextType } from "../Context/ParentContext";
 
 const Navbar: React.FC = () => {
-
-  // const { aboutRef } = useContext(AppContext)
 
   return (
     <div>
