@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React from "react";
 import Logo from "./../assets/RoamIndiaLogo.png";
 import "tailwindcss/tailwind.css";
 import "daisyui/dist/full.css";
