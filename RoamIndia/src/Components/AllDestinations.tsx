@@ -3,14 +3,13 @@ import AllDestinationsBg from './../assets/AllDestinationsBg.png';
 import Navbar from './Navbar';
 
 const AllDestinations: React.FC = () => {
-  const BgImage = `url(${AllDestinationsBg})`; // Use `url()` instead of `bg-url()`
+  const BgImage = `url(${AllDestinationsBg})`;
 
   return (
     <div>
       <Navbar />
       <div className='flex justify-center h-screen'>
         <div className={`bg-cover w-10/12 p-12 rounded-2xl`} style={{ backgroundImage: BgImage }}>
-          {/* Content inside the background container */}
           <div className="text-black text-center p-5">
             <form className="max-w-md h-4/12 mx-auto">
               <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
