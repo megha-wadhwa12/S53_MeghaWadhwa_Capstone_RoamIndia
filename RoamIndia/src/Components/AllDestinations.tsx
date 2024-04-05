@@ -83,6 +83,7 @@ const AllDestinations: React.FC = () => {
             <button className="join-item btn btn-active bg-[#359388]">2</button>
             <button className="join-item btn bg-slate-50">3</button>
             <button className="join-item btn bg-slate-50">4</button>
+
           </div>
         </div>
       </div>
