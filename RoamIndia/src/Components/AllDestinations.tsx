@@ -14,7 +14,7 @@ const AllDestinations: React.FC = () => {
   const BgImage = `url(${AllDestinationsBg})`;
 
   return (
-    <div className=''>
+    <div>
       <Navbar />
       <div className='mx-6'>
         <div className='flex justify-center h-screen'>
