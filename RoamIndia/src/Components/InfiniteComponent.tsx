@@ -1,6 +1,6 @@
 import React from 'react'
 
-interface props extends React.IntrinsicAttributes {
+interface props {
     image?: string,
     name?: string
 }

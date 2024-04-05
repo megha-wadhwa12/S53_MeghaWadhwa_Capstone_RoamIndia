@@ -106,7 +106,7 @@ const Home: React.FC = () => {
         </div>
       </div>
       <TrendingDestinations />
-      <div ref={aboutRef}>
+      <div>
         <AboutUs />
       </div>
       <div ref={DiscoverRef}>
