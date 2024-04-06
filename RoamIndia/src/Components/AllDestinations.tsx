@@ -78,7 +78,7 @@ const AllDestinations: React.FC = () => {
             <h1 className='text-[#640000] asul-regular text-2xl text-center mt-2'>Arunachal Pradesh</h1>
             </div>
           </div>
-          <nav className="flex items-center justify-center -space-x-px h-12 text-md m-20">
+        <nav className="flex items-center justify-center -space-x-px h-12 text-md m-20">
           <ul className="flex items-center -space-x-px h-12 text-md">
             <li>
               <a href="#" className="flex items-center justify-center p-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700">

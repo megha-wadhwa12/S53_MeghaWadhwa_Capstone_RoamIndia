@@ -28,10 +28,10 @@ const Restaurants: React.FC = () => {
           <form className="max-w-4xl ml-20">
             <label className='text-[#386367] text-3xl asul-regular'>Filter Restaurants by</label>
             <select id="countries" className="bg-gray-50 drop-shadow-md border-none text-gray-900 text-sm rounded-md block w-full p-3.5 mt-6">
-              <option selected>Region</option>
-              <option>Famous Attractions Nearby</option>
-              <option>State</option>
-              <option>City</option>
+              <option value={"Region"} selected>Region</option>
+              <option value={"FamousAttractions"}>Famous Attractions Nearby</option>
+              <option value={"State"}>State</option>
+              <option value={"City"}>City</option>
             </select>
           </form>
         </div>
