@@ -73,7 +73,7 @@ const Navbar: React.FC = () => {
             </li>
           </ul>
         </div>
-        <button className="inline-flex text-white h-24 lg:py-4 py-2.5 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-white-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 w-[8rem] text-xs  lg:w-[16rem] lg:text-[14px]">
+        <button className="inline-flex text-white h-24 lg:py-5 py-2.5 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-white-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 w-[8rem] text-xs  lg:w-[16rem] lg:text-[14px]">
           Sign up
         </button>
 

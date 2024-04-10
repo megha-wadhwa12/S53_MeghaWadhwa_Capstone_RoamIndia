@@ -32,8 +32,7 @@ const Home: React.FC = () => {
     },
   ];
   return (
-    <div className="
-    bg-white">
+    <>
       <Navbar />
       <div className="flex justify-center">
         <div className="absolute flex flex-col gap-4 lg:gap-6 lg:right-20 justify-center items-center lg:w-7/12 w-9/12 h-[14rem] lg:h-[28rem] z-10">
@@ -46,7 +45,7 @@ const Home: React.FC = () => {
           <img
             className="top-50 l-200 z-10 w-[30rem] h-96"
             src={Subline}
-            alt="RoamIndia"
+            alt="Subline text image"
           />
           <button className="btn btn-md bg-black text-white text-xs lg:btn-wide lg:text-sm" onClick={() => handleClick()}>
             DISCOVER YOUR JOURNEY
@@ -112,7 +111,7 @@ const Home: React.FC = () => {
       <div ref={DiscoverRef}>
         <TopAttractions />
       </div>
-    </div>
+    </>
   );
 };
 
