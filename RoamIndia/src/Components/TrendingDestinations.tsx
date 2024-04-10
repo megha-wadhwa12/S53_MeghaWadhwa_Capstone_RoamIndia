@@ -36,10 +36,10 @@ const TrendingDestinations: React.FC = () => {
         },
     ];
     return (
-        <div className=' pt-20 px-20'>
+        <div className=' pt-20 px-6 lg:px-20 md:px-16'>
             <div className='flex justify-between'>
-                <h1 className='text-[#0C3A25] text-3xl asul-regular'>Trending Destinations</h1>
-                <Link to="/alldestinations"><button className='btn text-white'>View All Destinations</button></Link>
+                <h1 className='text-[#0C3A25] text-xl md:text-4xl asul-regular'>Trending Destinations</h1>
+                <Link to="/alldestinations"><button className='btn text-sm text-white'>View All Destinations</button></Link>
             </div>
             <div className="h-[25rem] rounded-md flex flex-col antialiased items-center justify-center relative overflow-hidden">
                 <InfiniteMovingCards

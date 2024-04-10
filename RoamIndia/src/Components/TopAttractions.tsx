@@ -40,9 +40,9 @@ const TopAttractions: React.FC = () => {
     },
   ];
   return (
-    <div className='pt-20 px-20'>
-      <h1 className='text-[#0C3A25] text-4xl asul-regular'>Top Attractions</h1> 
-      <BentoGrid className="max-w-7xl my-20">
+    <div className='lg:pt-20 lg:px-20 md:px-8 py-20 px-5'>
+      <h1 className='text-[#0C3A25] text-3xl asul-regular text-center lg:text-left md:text-4xl'>Top Attractions</h1> 
+      <BentoGrid className="max-w-full my-20">
         {items.map((item, i) => (
           <BentoGridItem
             key={i}
