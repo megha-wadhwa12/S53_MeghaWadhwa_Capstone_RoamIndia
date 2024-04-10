@@ -20,4 +20,4 @@ const stateSchema = mongoose.Schema({
 
 const StateModel  = mongoose.model("stateschema", stateSchema)
 
-module.exports = StateModel         
+module.exports = StateModel
