@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import CarouselImage1 from "./../assets/Banner1.png"; // Import carousel images
+import CarouselImage1 from "./../assets/Banner1.png";
 import CarouselImage2 from "../assets/Banner2.png";
 import CarouselImage3 from "../assets/Banner3.png";
 import Subline from "../assets/Subline.png";
@@ -8,6 +8,7 @@ import { TypewriterEffect } from './TypeWriterEffect'
 import AboutUs from "./AboutUs";
 import TopAttractions from "./TopAttractions";
 import TrendingDestinations from "./TrendingDestinations";
+import Footer from "./Footer";
 
 const Home: React.FC = () => {
   const DiscoverRef = useRef<HTMLDivElement>(null)
@@ -111,6 +112,7 @@ const Home: React.FC = () => {
       <div ref={DiscoverRef}>
         <TopAttractions />
       </div>
+      <Footer />
     </>
   );
 };
