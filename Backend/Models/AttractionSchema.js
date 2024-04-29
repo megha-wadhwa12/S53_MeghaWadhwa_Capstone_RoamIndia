@@ -5,7 +5,7 @@ const attractionsSchema = mongoose.Schema({
     City: { type: mongoose.Schema.Types.ObjectId, ref: 'cityschemas'},
     State: { type: mongoose.Schema.Types.ObjectId, ref: 'stateschemas'},
     Image: {type: String,required: [true, "Please add image link of the State"]},
-    Attraction_Description: {type: String,required: [true, "Please add the description about the state"]},
+    Attraction_Description: {type: String,required: [true, "Please add the description about the Attraction"]},
     Location: {type: String,required: [true,"Please add the Location"]},
     Attraction_Type: {type: String,required: [true,"Please add the type of attraction"]},
     Things_To_Know: {type: String,required: [true, "Please Add Things to know before you go"]},
