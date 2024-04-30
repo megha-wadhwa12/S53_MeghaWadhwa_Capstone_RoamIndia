@@ -6,6 +6,7 @@ const stateSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'attractionschemas'
     }],
+    State_Code: {type: String,required: [true,"Please add state code"]},
     Image: {type: String,required: [true, "Please add image link of the State"]},
     Description: {type: String,required: [true, "Please add the description about the state"]}
     
