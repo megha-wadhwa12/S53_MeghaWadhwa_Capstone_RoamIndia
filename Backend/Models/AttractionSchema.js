@@ -8,8 +8,8 @@ const attractionsSchema = mongoose.Schema({
     Attraction_Description: {type: String,required: [true, "Please add the description about the Attraction"]},
     Location: {type: String,required: [true,"Please add the Location"]},
     Attraction_Type: {type: String,required: [true,"Please add the type of attraction"]},
-    Things_To_Know: {type: String,required: [true, "Please Add Things to know before you go"]},
-    How_To_Get_There: {type: String,required: [true, "Please Add How to get there"]}
+    Things_To_Know: [{type: String}],
+    How_To_Get_There: {type: String}
 })
 
 const AttractionModel  = mongoose.model("attractionschemas", attractionsSchema)

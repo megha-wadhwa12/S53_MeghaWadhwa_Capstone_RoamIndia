@@ -6,7 +6,7 @@ const citySchema = mongoose.Schema({
     Latitude: {type: Number},
     Longitude: {type: Number},
     Image: {type: String,required: [true, "Please add image link of the city"]},
-    Description: {type: String,required: [true, "Please add the description about the city"]},
+    City_Description: {type: String,required: [true, "Please add the description about the city"]},
     Iframe_Src: {type: String},
     Attractions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'attractionschemas' }],
 })
