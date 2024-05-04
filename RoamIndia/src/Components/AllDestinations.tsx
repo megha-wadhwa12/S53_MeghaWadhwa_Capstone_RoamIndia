@@ -10,13 +10,18 @@ const AllDestinations: React.FC = () => {
   const BgImage = `url(${AllDestinationsBg})`;
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5001/api/states")
-      .then((res) => {
-        setData(res.data);
-      })
-      .catch((err) => console.log(err));
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("https://s53-meghawadhwa-capstone-roamindia.onrender.com/api/states");
+        setData(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+  
+    fetchData();
   }, []);
+  
 
   return (
     <div>
