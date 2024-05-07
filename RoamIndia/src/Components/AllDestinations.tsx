@@ -62,12 +62,12 @@ const AllDestinations: React.FC = () => {
           </form>
         </div>
         <div>
-          <div className='grid grid-cols-3 w-11/12 justify-center items-center ml-16 content-center gap-20 '>
+          <div className='grid grid-cols-3 w-12/12 justify-center items-center mx-16 content-center gap-16 '>
             {data.map((e,i)=>{
               return (
                 <div key={i}>
                 <div style={{ backgroundImage: `url(${e.Image})` }} className="rounded-lg bg-no-repeat bg-cover min-w-64 min-h-64"></div>
-                <h1 className='text-[#640000] asul-regular text-2xl text-center mt-2'>{e.State_Name}</h1>
+                <h1 className='text-[#640000] asul-regular text-xl text-center mt-2'>{e.State_Name}</h1>
               </div>
               )
             })}
