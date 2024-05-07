@@ -17,6 +17,8 @@ app.use("/api/states",require("./Routes/StateRoutes"));
 
 app.use("/api/cities",require('./Routes/CityRoutes'));
 
+app.use("/api/attractions",require('./Routes/AttractionRoutes'));
+
 app.listen(port,()=>{
     console.log(`The server is running at port ${port}`)
 })

@@ -1,54 +1,78 @@
 const { mongo } = require("mongoose");
 const CityModel = require("./../Models/CitySchema");
 const StateModel = require("./../Models/StateSchema");
-const axios = require('axios');
+const axios = require("axios");
 
+const getImageFromDuckDuckGo = async (City_Name) => {
+  const options = {
+    method: "GET",
+    url: "https://duckduckgo-image-search.p.rapidapi.com/search/image",
+    params: { q: City_Name },
+    headers: {
+      "X-RapidAPI-Key": "0b1df29a1dmsh64151f3c5b659f9p124e5ajsn77f7c6120674",
+      "X-RapidAPI-Host": "duckduckgo-image-search.p.rapidapi.com",
+    },
+  };
 
-// const getImageFromDuckDuckGo = async(City_Name)=>{
-//   const options = {
-//     method: 'GET',
-//     url: 'https://duckduckgo10.p.rapidapi.com/search/images',
-//     params: {
-//       term: City_Name,
-//       safeSearch: 'off',
-//       region: 'in-en'
-//     },
-//     headers: {
-//       'X-RapidAPI-Key': '0b1df29a1dmsh64151f3c5b659f9p124e5ajsn77f7c6120674',
-//       'X-RapidAPI-Host': 'duckduckgo10.p.rapidapi.com'
-//     }
-//   };
-  
-//   try {
-//     const response = await axios.request(options);
-//     const imageData = response.data.data[0]; // Access the first data object
-//     if (!imageData) {
-//       throw new Error('Image data not found');
-//     }
-//     const imageUrl = imageData.image; // Extract the image URL
-//     return imageUrl;
+  try {
+    const response = await axios.request(options);
+    const imageData = response.data.results[0]; // Access the first data object
+    if (!imageData) {
+      throw new Error("Image data not found");
+    }
+    const imageUrl = imageData.image; // Extract the image URL
+    return imageUrl;
+  } catch (error) {
+    console.error(error);
+    // getImageFromGoogleAPI(City_Name)
+    getImageFromGoogleSearch(City_Name);
+  }
+};
 
-//   } catch (error) {
-//     console.error(error);
-//     getImageFromGoogleAPI(City_Name)
-//   }
-// }
+const getImageFromGoogleSearch = async (City_Name) => {
+
+  const options = {
+    method: "GET",
+    url: "https://google-search72.p.rapidapi.com/imagesearch",
+    params: {
+      q: City_Name,
+      gl: "in",
+      lr: "lang_en",
+      num: "20",
+      start: "0",
+    },
+    headers: {
+      "X-RapidAPI-Key": "0b1df29a1dmsh64151f3c5b659f9p124e5ajsn77f7c6120674",
+      "X-RapidAPI-Host": "google-search72.p.rapidapi.com",
+    },
+  };
+
+  try {
+    const response = await axios.request(options);
+    const imageData = response.data.items[0]; // Access the first data object
+    if (!imageData) {
+      throw new Error("Image data not found");
+    }
+    const imageUrl = imageData.originalImageUrl; // Extract the image URL
+    return imageUrl;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 const getImageFromGoogleAPI = async(City_Name)=>{
-  const axios = require('axios');
-
   const options = {
     method: 'POST',
     url: 'https://google-api31.p.rapidapi.com/imagesearch',
     headers: {
       'content-type': 'application/json',
-      'X-RapidAPI-Key': '0b1df29a1dmsh64151f3c5b659f9p124e5ajsn77f7c6120674',
+      'X-RapidAPI-Key': 'c76f4d317fmsh5f213b236311f67p1080acjsna83bcaf77600',
       'X-RapidAPI-Host': 'google-api31.p.rapidapi.com'
     },
     data: {
       text: City_Name,
       safesearch: 'off',
-      region: 'in-en',
+      region: 'wt-wt',
       color: '',
       size: '',
       type_image: '',
@@ -56,7 +80,7 @@ const getImageFromGoogleAPI = async(City_Name)=>{
       max_results: 100
     }
   };
-  
+
   try {
     const response = await axios.request(options);
     const imageData = response.data.result[1]; // Access the first data object
@@ -99,23 +123,22 @@ const createAllCities = async (req, res) => {
     const StateId = State[0]._id;
     console.log("State", StateId);
 
-    // const imageURL = await getImageFromDuckDuckGo(City_Name);
-    const imageURL = await getImageFromGoogleAPI(City_Name);
+    const imageURL = await getImageFromDuckDuckGo(City_Name);
+    // const imageURL = await getImageFromGoogleAPI(City_Name);
     const postCity = await CityModel.create({
       City_Name,
-      State : StateId,
+      State: StateId,
       Latitude,
       Longitude,
-      Image : imageURL,
+      Image: imageURL,
       City_Description,
       Iframe_Src,
       Popular_Attractions,
     });
     res.status(201).json({ message: "Create City", postCity });
-
   } catch (error) {
     console.log("error", error);
   }
 };
 
-module.exports = { getAllCities, createAllCities, getImageFromGoogleAPI };
+module.exports = { getAllCities, createAllCities };
