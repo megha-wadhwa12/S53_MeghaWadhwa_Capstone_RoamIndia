@@ -9,7 +9,7 @@ const getImageFromDuckDuckGo = async (City_Name) => {
     url: "https://duckduckgo-image-search.p.rapidapi.com/search/image",
     params: { q: City_Name },
     headers: {
-      "X-RapidAPI-Key": "0b1df29a1dmsh64151f3c5b659f9p124e5ajsn77f7c6120674",
+      "X-RapidAPI-Key": process.env.RAPID_KEY,
       "X-RapidAPI-Host": "duckduckgo-image-search.p.rapidapi.com",
     },
   };
@@ -18,12 +18,13 @@ const getImageFromDuckDuckGo = async (City_Name) => {
     const response = await axios.request(options);
     const imageData = response.data.results[0]; // Access the first data object
     if (!imageData) {
+      res.status(404).json({message : "Image not found"});
       throw new Error("Image data not found");
     }
     const imageUrl = imageData.image; // Extract the image URL
     return imageUrl;
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     // getImageFromGoogleAPI(City_Name)
     getImageFromGoogleSearch(City_Name);
   }
@@ -42,7 +43,7 @@ const getImageFromGoogleSearch = async (City_Name) => {
       start: "0",
     },
     headers: {
-      "X-RapidAPI-Key": "0b1df29a1dmsh64151f3c5b659f9p124e5ajsn77f7c6120674",
+      "X-RapidAPI-Key": process.env.RAPID_KEY,
       "X-RapidAPI-Host": "google-search72.p.rapidapi.com",
     },
   };
@@ -51,12 +52,13 @@ const getImageFromGoogleSearch = async (City_Name) => {
     const response = await axios.request(options);
     const imageData = response.data.items[0]; // Access the first data object
     if (!imageData) {
+      res.status(404).json({message : "Image not found"});
       throw new Error("Image data not found");
     }
     const imageUrl = imageData.originalImageUrl; // Extract the image URL
     return imageUrl;
   } catch (error) {
-    console.error(error);
+    // console.error(error);
   }
 };
 
@@ -66,13 +68,13 @@ const getImageFromGoogleAPI = async(City_Name)=>{
     url: 'https://google-api31.p.rapidapi.com/imagesearch',
     headers: {
       'content-type': 'application/json',
-      'X-RapidAPI-Key': 'c76f4d317fmsh5f213b236311f67p1080acjsna83bcaf77600',
+      'X-RapidAPI-Key': process.env.RAPID_KEY_2,
       'X-RapidAPI-Host': 'google-api31.p.rapidapi.com'
     },
     data: {
       text: City_Name,
       safesearch: 'off',
-      region: 'wt-wt',
+      region: 'in-en',
       color: '',
       size: '',
       type_image: '',
@@ -85,12 +87,13 @@ const getImageFromGoogleAPI = async(City_Name)=>{
     const response = await axios.request(options);
     const imageData = response.data.result[1]; // Access the first data object
     if (!imageData) {
+      res.status(404).json({message : "Image not found"});
       throw new Error('Image data not found');
     }
     const imageUrl = imageData.image; // Extract the image URL
     return imageUrl;
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     throw error;
   }
 }
@@ -101,7 +104,7 @@ const getAllCities = async (req, res) => {
     console.log("AllCities", AllCities);
     res.status(200).json(AllCities);
   } catch (error) {
-    console.log("error", error);
+    // console.log("error", error);
     res.status(500).json({ message: "Error fetching All Cities" });
   }
 };
@@ -138,6 +141,7 @@ const createAllCities = async (req, res) => {
     res.status(201).json({ message: "Create City", postCity });
   } catch (error) {
     console.log("error", error);
+    res.status(500).json({message : "Error adding a city"})
   }
 };
 

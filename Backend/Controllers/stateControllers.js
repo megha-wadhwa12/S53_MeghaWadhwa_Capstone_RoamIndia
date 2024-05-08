@@ -25,6 +25,7 @@ const createState = async (req, res) => {
     res.status(201).json({message : "Created State", postState})
   } catch (error) {
     console.log("error", error);
+    res.status(500).json({message : "Error adding a State"})
     throw error;
   }
 };
