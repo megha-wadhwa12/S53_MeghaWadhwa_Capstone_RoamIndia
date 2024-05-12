@@ -28,7 +28,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, askUser }) => {
     if (isSocial) {
       postData.username = input;
       axios
-        .post("http://localhost:5001/api/users/tosocial", postData)
+        .post(import.meta.env.VITE_POSTTOSOCIAL, postData)
         .then((res) => {
           setError(" ");
           setLoggedInUser(res.data.postUser);
@@ -45,7 +45,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, askUser }) => {
     } else {
       postData.name = input;
       axios
-        .post("http://localhost:5001/api/users", postData)
+        .post(import.meta.env.VITE_POSTUSERS, postData)
         .then((res) => {
           setError(" ");
           setLoggedInUser(res.data.postUser);
@@ -60,8 +60,6 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, askUser }) => {
           setLoginDone(true);
         });
     }
-
-    // closeModal();
   };
 
   const closeModal = () => {
@@ -69,7 +67,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, askUser }) => {
     setTimeout(() => {
       onClose();
       setIsTransitioning(false);
-    }, 300); // Adjust the duration to match your transition duration in CSS
+    }, 300);
   };
   return (
     <>
@@ -79,7 +77,6 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, askUser }) => {
             className={`fixed inset-0 transition-opacity ${
               isTransitioning ? "opacity-0" : "opacity-100"
             }`}
-            // onClick={closeModal}
           >
             <div className="absolute inset-0 bg-black opacity-50"></div>
           </div>

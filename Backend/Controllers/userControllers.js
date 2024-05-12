@@ -205,7 +205,6 @@ const AddNewUserToSocial = async (req, res) => {
           authData.userName,
           process.env.JWT_SECRET_KEY
         );
-        // console.log("access_token1: ", access_token);
         console.log({
           access_token: access_token,
           postUser: postUser,
@@ -224,52 +223,6 @@ const AddNewUserToSocial = async (req, res) => {
     res.status(500).send(`Internal Server Error. ${error}`);
   }
 };
-
-// const AddNewUserJWT = async (req, res) => {
-//     try {
-//       const { error, value } = UserValidationSchema.validate(req.body, {
-//         abortEarly: false,
-//       });
-//       if (error) {
-//         console.log(error);
-//         const allErrors = error.details.map((e) => e.message);
-//         res.status(400).json({ error: allErrors });
-//       } else {
-//         const { Name, userName, emailId, Favourites } = value;
-
-//         const existingUser = await mongooseUserModel.findOne({ userName })
-//         if(existingUser){
-//           return res.status(400).send("User Already Exists, Please Login to Continue.")
-//         }
-
-//         const postUser = await mongooseUserModel.create({
-//           Name,
-//           userName,
-//           emailId,
-//           Favourites : [],
-//         });
-//         const authData = {
-//           userName: postUser.userName,
-//         };
-//         if(postUser){
-//           const access_token = jwt.sign(
-//             authData.userName,
-//             process.env.JWT_SECRET_KEY
-//             );
-//             console.log("access_token1: ", access_token);
-//             res.status(201).json({
-//             access_token: access_token,
-//             postUser: postUser,
-//           });
-//           }else{
-//             return res.status(400).send("Failed to create new user.")
-//           }
-//       }
-//     } catch (error) {
-//       console.log("error", error);
-//       res.status(500).send(`Internal Server Error. ${err}`);
-//     }
-// };
 
 const updateUser = async (req, res) => {
   try {

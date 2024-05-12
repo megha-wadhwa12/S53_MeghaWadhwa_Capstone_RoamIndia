@@ -1,6 +1,6 @@
 import { User, useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
-import React, { createContext, useLayoutEffect, useRef, useState} from 'react'
+import React, { createContext, useLayoutEffect, useRef, useState } from 'react'
 
 interface AppContextType {
     aboutRef: React.MutableRefObject<HTMLDivElement>;
@@ -22,61 +22,63 @@ interface ParentContextProps {
 const ParentContext: React.FC<ParentContextProps> = ({ children }) => {
     const { user, isAuthenticated, isLoading } = useAuth0();
     const aboutRef = useRef<HTMLDivElement>(document.createElement('div'))
-    const [loginDone,setLoginDone] = useState<boolean>(true)
-    const [loginSuccessful,setLoginSuccessful] = useState<boolean>(false)
-    const [askUser,setAskUser] = useState<string>("")
-    const [loggedInUser,setLoggedInUser] = useState<Object>("")
+    const [loginDone, setLoginDone] = useState<boolean>(true)
+    const [loginSuccessful, setLoginSuccessful] = useState<boolean>(false)
+    const [askUser, setAskUser] = useState<string>("")
+    const [loggedInUser, setLoggedInUser] = useState<Object>("")
     console.log(loggedInUser);
-    
-    
-    
-    useLayoutEffect(()=>{
-        if(isAuthenticated){
+
+
+
+    useLayoutEffect(() => {
+        if (isAuthenticated) {
             setLoginDone(false);
-            const checkUser = async (user : User|undefined) =>{
-                const res = await axios.post("http://localhost:5001/api/users/checkbyemail",user)
-                
+            const checkUser = async (user: User | undefined) => {
+                if (!user) {
+                    return
+                }
+                const res = await axios.post(import.meta.env.VITE_CHECKBYMAIL, user)
                 return res.data
             }
-            checkUser(user).then((res)=>{
-                if(!res.found){
-                    if(res.isSocial){
+            checkUser(user).then((res) => {
+                if (!res.found) {
+                    if (res.isSocial) {
                         setAskUser("Username")
-                    }else{
+                    } else {
                         setAskUser("Name")
                     }
-                }else{
+                } else {
                     setLoggedInUser(res.OneUser)
                     setLoginSuccessful(true)
                     setLoginDone(true)
                 }
-                
-            }).catch(err=>{
+
+            }).catch(err => {
                 setLoginSuccessful(false)
                 setLoginDone(true)
                 console.log(err);
-                
+
             })
         }
-    },[isAuthenticated])
+    }, [isAuthenticated])
 
-    useLayoutEffect(()=>{
-        if(loginSuccessful){
+    useLayoutEffect(() => {
+        if (loginSuccessful) {
             setAskUser("")
         }
-    },[loginSuccessful])
-    useLayoutEffect(()=>{
-        if(isLoading){
+    }, [loginSuccessful])
+    useLayoutEffect(() => {
+        if (isLoading) {
             setLoginDone(false)
-        }else if(!isLoading && !isAuthenticated){
+        } else if (!isLoading && !isAuthenticated) {
             setLoginDone(true)
             setLoginSuccessful(false)
         }
-    },[isLoading])
-    
+    }, [isLoading])
+
 
     return (
-        <AppContext.Provider value={{ aboutRef,loginDone,loginSuccessful,askUser,loggedInUser,setAskUser,setLoginDone,setLoginSuccessful,setLoggedInUser }}>
+        <AppContext.Provider value={{ aboutRef, loginDone, loginSuccessful, askUser, loggedInUser, setAskUser, setLoginDone, setLoginSuccessful, setLoggedInUser }}>
             {children}
         </AppContext.Provider>
     )
