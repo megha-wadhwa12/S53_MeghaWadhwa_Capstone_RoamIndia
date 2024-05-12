@@ -69,7 +69,6 @@ export const InfiniteMovingCards = ({
             }
         }
     };
-    console.log('item', items)
     return (
         <div
             ref={containerRef}
