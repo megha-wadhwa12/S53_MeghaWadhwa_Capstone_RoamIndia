@@ -2,19 +2,21 @@ import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import React, { FormEvent, useContext, useState } from "react";
 import { AppContext } from "../Context/ParentContext";
+import { setCookie } from "./ManageCookies";
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   askUser: string;
+  access_token: string;
 }
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, askUser }) => {
   const appContext = useContext(AppContext);
   const { setLoginDone, setLoginSuccessful, setLoggedInUser } = appContext || {
-    setLoginDone: () => {},
-    setLoginSuccessful: () => {},
-    setLoggedInUser: () => {},
+    setLoginDone: () => { },
+    setLoginSuccessful: () => { },
+    setLoggedInUser: () => { },
   };
   const { user } = useAuth0();
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -49,6 +51,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, askUser }) => {
         .then((res) => {
           setError(" ");
           setLoggedInUser(res.data.postUser);
+          setCookie("username", res.data.access_token, 2);
           setLoginSuccessful(true);
           setLoginDone(true);
           closeModal();
@@ -74,18 +77,16 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, askUser }) => {
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
           <div
-            className={`fixed inset-0 transition-opacity ${
-              isTransitioning ? "opacity-0" : "opacity-100"
-            }`}
+            className={`fixed inset-0 transition-opacity ${isTransitioning ? "opacity-0" : "opacity-100"
+              }`}
           >
             <div className="absolute inset-0 bg-black opacity-50"></div>
           </div>
           <div
-            className={`relative flex flex-col bg-white w-full max-w-md mx-auto rounded-lg shadow-lg transition-all ${
-              isTransitioning
+            className={`relative flex flex-col bg-white w-full max-w-md mx-auto rounded-lg shadow-lg transition-all ${isTransitioning
                 ? "transform translate-y-8 opacity-0 scale-0"
                 : "transform translate-y-0 opacity-100 scale-1"
-            }`}
+              }`}
           >
             <div className="flex items-center justify-center px-4 py-3 bg-gray-100 border-b border-gray-200 rounded-t-lg">
               <h3 className="text-lg font-semibold text-center">
