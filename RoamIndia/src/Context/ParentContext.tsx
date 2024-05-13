@@ -1,6 +1,7 @@
 import { User, useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 import React, { createContext, useLayoutEffect, useRef, useState } from 'react'
+import { setCookie } from './../Components/ManageCookies';
 
 interface AppContextType {
     aboutRef: React.MutableRefObject<HTMLDivElement>;
@@ -49,6 +50,7 @@ const ParentContext: React.FC<ParentContextProps> = ({ children }) => {
                     }
                 } else {
                     setLoggedInUser(res.OneUser)
+                    setCookie("username",res.access_token,2);
                     setLoginSuccessful(true)
                     setLoginDone(true)
                 }
