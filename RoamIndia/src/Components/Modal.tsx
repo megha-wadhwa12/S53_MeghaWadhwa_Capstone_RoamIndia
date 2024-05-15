@@ -2,7 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import React, { FormEvent, useContext, useState } from "react";
 import { AppContext } from "../Context/ParentContext";
-import { setCookie } from "./ManageCookies";
+import { setCookie } from "./../ManageCookies";
 
 interface ModalProps {
   isOpen: boolean;

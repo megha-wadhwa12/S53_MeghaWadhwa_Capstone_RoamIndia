@@ -3,8 +3,7 @@ const setCookie = (name:string, value: string, daysToExpire: number) => {
     date.setTime(date.getTime() + daysToExpire * 24 * 60 * 60 * 1000);
     const expire = "expires=" + date.toUTCString();
     const secureFlag = ";Secure";
-    const httpOnlyFlag = ";HttpOnly";
-    document.cookie = `${name}=${value};${expire};path=/${secureFlag}${httpOnlyFlag}`;
+    document.cookie = `${name}=${value};${expire};path=/${secureFlag}`;
 };
 
 const deleteCookie = (name: string) => {
