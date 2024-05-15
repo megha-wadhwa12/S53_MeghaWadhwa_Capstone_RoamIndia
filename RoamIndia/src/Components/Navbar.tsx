@@ -5,7 +5,7 @@ import "daisyui/dist/full.css";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { AppContext } from "../Context/ParentContext";
-import { deleteCookie } from "./ManageCookies";
+import { deleteCookie } from "./../ManageCookies";
 
 const Navbar: React.FC = () => {
   const { loginWithRedirect } = useAuth0();
