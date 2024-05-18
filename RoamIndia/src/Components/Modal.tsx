@@ -8,7 +8,7 @@ interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   askUser: string;
-  access_token: string;
+  access_token?: string;
 }
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, askUser }) => {

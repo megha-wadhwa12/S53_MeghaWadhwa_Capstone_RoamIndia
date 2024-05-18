@@ -1,27 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import AllDestinationsBg from './../assets/AllDestinationsBg.png';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import axios from 'axios';
+import { AppContext } from '../Context/ParentContext';
 
 const AllDestinations: React.FC = () => {
-  const [data, setData] = useState([])
-
   const BgImage = `url(${AllDestinationsBg})`;
+  const appContext = useContext(AppContext);
+  const { data } = appContext || { data: [] };
+  const { selected, setSelected } = appContext || { selected: "state" };
+  const [renderData, setRenderData] = useState([data])
+  const { cityData, attractionData } = appContext || { cityData: [] } || { attractiondata: [] }
+
+  const handleChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (setSelected) {
+      setSelected(e.target.value);
+      console.log("Selected", selected)
+    } else {
+      console.error('setSelected is not defined in the context.');
+    }
+  }
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("https://s53-meghawadhwa-capstone-roamindia.onrender.com/api/states");
-        setData(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-  
-    fetchData();
-  }, []);
-  
+    if (selected == "city") {
+      setRenderData(cityData)
+    } else if(selected=="attractions") {
+      setRenderData(attractionData)
+    }else{
+      setRenderData(data)
+    }
+  }, [selected]);
 
   return (
     <div>
@@ -53,22 +61,23 @@ const AllDestinations: React.FC = () => {
         <div className='py-20'>
           <form className="max-w-4xl ml-20">
             <label className='text-[#386367] text-3xl asul-regular'>Filter places by</label>
-            <select id="countries" className="bg-gray-50 drop-shadow-md border-none text-gray-900 text-sm rounded-md block w-full p-3.5 mt-6">
-              <option >Most Popular</option>
-              <option>Region</option>
-              <option selected>State</option>
-              <option>City</option>
+            <select onChange={handleChange} id="countries" className="bg-gray-50 drop-shadow-md border-none text-gray-900 text-sm rounded-md block w-full p-3.5 mt-6">
+              {/* <option>Most Popular</option> */}
+              <option value={"state"}>State</option>
+              {/* <option value={"region"}>Region</option> */}
+              <option value={"city"}>City</option>
+              <option value={"attractions"}>All Attractions</option>
             </select>
           </form>
         </div>
         <div>
           <div className='grid grid-cols-3 w-12/12 justify-center items-center mx-16 content-center gap-16 '>
-            {data.map((e,i)=>{
+            {renderData.map((e, i) => {
               return (
                 <div key={i}>
-                <div style={{ backgroundImage: `url(${e.Image})` }} className="rounded-lg bg-no-repeat bg-cover min-w-64 min-h-64"></div>
-                <h1 className='text-[#640000] asul-regular text-xl text-center mt-2'>{e.State_Name}</h1>
-              </div>
+                  <div style={{ backgroundImage: `url(${e.Image})` }} className="rounded-lg bg-no-repeat bg-cover min-w-64 min-h-64"></div>
+                  <h1 className='text-[#640000] asul-regular text-xl text-center mt-2'>{e.State_Name || e.City_Name || e.Attraction_Name}</h1>
+                </div>
               )
             })}
           </div>

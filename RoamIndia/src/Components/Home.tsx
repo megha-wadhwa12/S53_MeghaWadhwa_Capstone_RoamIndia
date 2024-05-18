@@ -17,7 +17,6 @@ const Home: React.FC = () => {
   const appContext = useContext(AppContext);
   const [showModal, setShowModal] = useState<boolean>(false)
   const {askUser} =  appContext || {askUser: ""}
-
   const onClose = () => {
     setShowModal(false);
   }
