@@ -4,66 +4,11 @@ const StateModel = require("./../Models/StateSchema");
 const CityModel = require("../Models/CitySchema");
 const axios = require("axios");
 
-const getImageFromDuckDuckGo = async (Attraction_Name) => {
-  const options = {
-    method: "GET",
-    url: "https://duckduckgo10.p.rapidapi.com/search/images",
-    params: {
-      term: Attraction_Name,
-      safeSearch: "off",
-      region: "in-en",
-    },
-    headers: {
-      "X-RapidAPI-Key": process.env.RAPID_KEY_2,
-      "X-RapidAPI-Host": "duckduckgo10.p.rapidapi.com",
-    },
-  };
-
-  try {
-    const response = await axios.request(options);
-    const imageData = response.data.data[0]; // Access the first data object
-    if (!imageData) {
-      res.status(404).json({message : "Image not found"});
-      throw new Error("Image data not found");
-    }
-    const imageUrl = imageData.image; // Extract the image URL
-    return imageUrl;
-  } catch (error) {
-    console.error(error);
-    getImageFromDuckImageSearch(Attraction_Name)
-  }
-};
-
-const getImageFromDuckImageSearch = async (Attraction_Name) => {
-
-  const options = {
-    method: 'GET',
-    url: 'https://duckduckgo-image-search.p.rapidapi.com/search/image',
-    params: {q: Attraction_Name},
-    headers: {
-      'X-RapidAPI-Key': process.env.RAPID_KEY_2,
-      'X-RapidAPI-Host': 'duckduckgo-image-search.p.rapidapi.com'
-    }
-  };
-  
-
-  try {
-    const response = await axios.request(options);
-    const imageData = response.data.results[0]; // Access the first data object
-    if (!imageData) {
-      res.status(404).json({message : "Image not found"});
-      throw new Error("Image data not found");
-    }
-    const imageUrl = imageData.image; // Extract the image URL
-    return imageUrl;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 const getAllAttractions = async (req, res) => {
   try {
-    const allAttractions = await AttractionModel.find({}).populate("State").populate("City");
+    const allAttractions = await AttractionModel.find({})
+      .populate("State")
+      .populate("City");
     console.log("allAttractions", allAttractions);
     res.status(200).json(allAttractions);
   } catch (error) {
@@ -94,12 +39,12 @@ const createAllAttractions = async (req, res) => {
     const CityId = City[0]._id;
     // console.log("City", CityId);
 
-    const imageURL = await getImageFromDuckImageSearch(Attraction_Name);
+    // const imageURL = await getImageFromDuckImageSearch(Attraction_Name);
     const postAttraction = await AttractionModel.create({
       Attraction_Name,
       State: StateId,
       City: CityId,
-      Image: imageURL,
+      Image,
       Attraction_Description,
       Location,
       Attraction_Type,
@@ -109,12 +54,48 @@ const createAllAttractions = async (req, res) => {
     res.status(201).json({ message: "Create Attraction", postAttraction });
   } catch (error) {
     console.log("error", error);
-    res.status(500).json({message : "Error adding an Attraction"})
-    throw new error;
+    res.status(500).json({ message: "Error adding an Attraction" });
+    throw new error();
   }
 };
+
+const updateAttraction = async (req, res) => {
+  try {
+    const { cityName } = req.body;
+
+    // Find the city based on cityName and state
+    const cityFind = await CityModel.findOne({ City: null});
+
+    if (!cityFind) {
+      return res.status(404).json({ message: "Null City not found" });
+    }
+
+    // Update the attraction with the city ID
+    const updateData = { ...req.body, city: city._id };
+
+    const updateOneAttraction = await AttractionModel.findByIdAndUpdate(
+      req.params.id,
+      updateData,
+      { new: true, runValidators: true }
+    );
+
+    if (!updateOneAttraction) {
+      return res.status(404).json({ message: "Attraction not found" });
+    }
+
+    // Populate the necessary fields
+    await updateOneAttraction.populate('city').populate('state').execPopulate();
+
+    res.status(200).json({ message: "Updated and Populated Attraction", updateOneAttraction });
+  } catch (error) {
+    console.log("Error updating attraction:", error);
+    res.status(500).json({ message: "Error updating attraction", error });
+  }
+};
+
 
 module.exports = {
   getAllAttractions,
   createAllAttractions,
+  updateAttraction,
 };
