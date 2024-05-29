@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import AllDestinationsBg from './../assets/AllDestinationsBg.png';
 import Navbar from './Navbar';
 import Footer from './Footer';

@@ -11,6 +11,9 @@ export default {
       navbar: ["Jacques Francois"],
       lifelong: ["Bentham"]
     },
+    fontColor: {
+      Brown: "AA5151",
+    },
     height: {
       128: "12rem",
     },
