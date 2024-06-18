@@ -22,6 +22,11 @@ interface AppContextType {
     selected: string,
     setSelected: (selected: string) => void;
     handleChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+    StateData: any[];
+    CityData: any[];
+    AttractionData: any[];
+    value: string;
+    setValue: (value: string) => void;
 }
 
 interface UserType {
@@ -38,32 +43,32 @@ interface ParentContextProps {
     children: React.ReactNode;
 }
 
-interface StateData {
+export interface StateData {
     _id: string;
     State_Name: string;
     State_Code: string;
     Popular_Attractions: Array<string>;
-    Image: URL;
+    Image: string;
     State_Description: string;
 }
 
-interface CityData {
+export interface CityData {
     _id: string;
     City_Name: string;
-    State: string;
+    State: StateData;
     Latitude: string;
     Longitude: string;
-    Image?: URL;
+    Image?: string;
     City_Description: string;
     Popular_Attractions: Array<string>;
 }
 
-interface AttractionData {
+export interface AttractionData {
     _id: string;
     Attraction_Name: string;
-    State_Name: string,
-    City_Name: string,
-    Image?: URL;
+    State: StateData,
+    City: CityData,
+    Image?: string;
     Attraction_Description: string;
     Location: string;
     Attraction_Type: string;
@@ -82,6 +87,8 @@ const ParentContext: React.FC<ParentContextProps> = ({ children }) => {
     const [cityData, setCityData] = useState<CityData[]>([]);
     const [attractionData, setAttractionData] = useState<AttractionData[]>([]);
     const [selected, setSelected] = useState<string>("");
+    const [value, setValue] = useState<string>("Cellular Jail")
+
 
     useLayoutEffect(() => {
         if (isAuthenticated) {
@@ -154,7 +161,7 @@ const ParentContext: React.FC<ParentContextProps> = ({ children }) => {
     useLayoutEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:5001/api/attractions`);
+                const response = await axios.get(`https://s53-meghawadhwa-capstone-roamindia.onrender.com/api/attractions`);
                 setAttractionData(response.data);
                 console.log('response.data', response.data);
             } catch (error) {
@@ -171,7 +178,7 @@ const ParentContext: React.FC<ParentContextProps> = ({ children }) => {
     };
 
     return (
-        <AppContext.Provider value={{ aboutRef, loginDone, loginSuccessful, askUser, loggedInUser, setAskUser, setLoginDone, setLoginSuccessful, setLoggedInUser, data, setData, selected, setSelected, cityData, setCityData, attractionData, setAttractionData, handleChange }}>
+        <AppContext.Provider value={{ aboutRef, loginDone, loginSuccessful, askUser, loggedInUser, setAskUser, setLoginDone, setLoginSuccessful, setLoggedInUser, data, setData, selected, setSelected, cityData, setCityData, attractionData, setAttractionData, handleChange, value, setValue }}>
             {children}
         </AppContext.Provider>
     );

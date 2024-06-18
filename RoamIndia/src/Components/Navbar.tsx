@@ -62,25 +62,24 @@ const Navbar: React.FC = () => {
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 text-black text-lg jacques-francois-regular">
+          <ul className="menu menu-horizontal px-1 lg: flex lg:gap-8 text-black text-lg jacques-francois-regular">
             <li>
-              <a>About Us</a>
+              About Us
             </li>
             <li>
-              <a>Contact Us</a>
+              Contact Us
             </li>
             <Link to={"/restaurants"}>
-              <li>
-                <a>Restaurants</a>
+              <li>Restaurants
               </li>
             </Link>
             <Link to={"/hotels"}>
               <li>
-                <a>Hotels</a>
+                Hotels
               </li>
             </Link>
             <li>
-              <a></a>
+
             </li>
           </ul>
         </div>

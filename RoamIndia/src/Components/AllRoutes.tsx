@@ -13,6 +13,8 @@ import AddNewPlace from './AddNewPlace'
 import PageNotFound from './PageNotFound'
 import Place from './Place'
 import Attraction from './Attraction'
+import States from './States'
+import Cities from './Cities'
 
 const AllRoutes: React.FC = () => {
   return (
@@ -24,15 +26,14 @@ const AllRoutes: React.FC = () => {
         <Route path="/topattractions" element={<TopAttractions />} />     
         <Route path="/restaurants" element={<Restaurants />} />     
         <Route path="/hotels" element={<Hotels />} />     
-        <Route path="/login" element={<Hotels />} />     
-        <Route path="/signup" element={<Hotels />} />     
+        <Route path="/:state" element={<States />} />     
+        <Route path="/:state/:city" element={<Cities />} />     
         <Route path="/alldestinations" element={<AllDestinations />} />     
         <Route path="/addplaceform" element={<AddNewPlaceForm />} />      
         <Route path="/addplace" element={<AddNewPlace />} />     
         <Route path="/place" element={<Place />} />     
-        <Route path="/attraction" element={<Attraction />} />     
-        <Route path="/notfound" element={<PageNotFound />} />     
-
+        <Route path="/:state/:city/:attraction" element={<Attraction />} />     
+        <Route path="*" element={<PageNotFound />} />
     </Routes>
   )
 }
