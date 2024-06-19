@@ -16,7 +16,7 @@ const Cities: React.FC = () => {
   console.log('filteredCity ', filteredCity);
 
   const filteredAttraction = value ? attractionData?.filter((e) => e.City.City_Name === value) : attractionData;
-  console.log('filteredCity ', filteredCity);
+  console.log('filteredAttraction ', filteredAttraction);
 
   return (
     <div className="w-full min-h-full">
@@ -42,11 +42,12 @@ const Cities: React.FC = () => {
             <video src={Video} autoPlay loop width="90%" height="auto" className='mx-auto my-32' >
               Your browser does not support the video tag.
             </video>
+            {filteredAttraction.length != 0 && <h1 className='text-center text-4xl font-navbar text-[#0C3A25] tracking-tight'>Attractions in {c.City_Name}</h1>
+            }
             <div>
               {filteredAttraction.map((e) => {
                 return (
                   <div>
-                    <h1 className='text-center text-4xl font-navbar text-[#0C3A25] tracking-tight'>Attractions in {c.City_Name}</h1>
                     <CardComponent attraction={e.Attraction_Name} location={e.Location} image={e.Image} state={e.State} description={e.Attraction_Description} type={e.Attraction_Type} city={e.City} />
                   </div>
                 )
