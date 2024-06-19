@@ -10,7 +10,7 @@ const DetailedPage: React.FC = () => {
   const { attractionData } = appContext || { attractionData: [] }
   console.log('attractionData', attractionData)
   // const [renderData, setRenderData] = useState([data])
-  const [value, setValue] = useState<string>("Kanaka Durga Temple")
+  const [value] = useState<string>("Cellular Jail")
 
   const filteredAttraction = value ? attractionData?.filter((e) => {
     return e.Attraction_Name === value
