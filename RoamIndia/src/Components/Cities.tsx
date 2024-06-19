@@ -1,33 +1,64 @@
-import React, { useContext } from 'react'
-import Navbar from './Navbar'
-import { AppContext, CityData} from '../Context/ParentContext'
+import React, { useContext } from 'react';
+import Navbar from './Navbar';
+import { AppContext } from '../Context/ParentContext';
 import Footer from './Footer';
+// import TajMahal2 from './../assets/TajMahal2.png';
+import Video from './../assets/4440864-hd_1920_1080_25fps.mp4';
+import CardComponent from './CardComponent';
 
 const Cities: React.FC = () => {
   const appContext = useContext(AppContext);
-  const {cityData} = appContext || {cityData: []}
-  const {value} = appContext || {value: ""};
+  const { cityData } = appContext || { cityData: [] };
+  const { attractionData } = appContext || { attractionData: [] };
+  const { value } = appContext || { value: '' };
 
-  const filteredCity = value ? cityData?.filter((e) => {
-    return e.City_Name === value
-  }) : cityData;
+  const filteredCity = value ? cityData?.filter((e) => e.City_Name === value) : cityData;
+  console.log('filteredCity ', filteredCity);
+
+  const filteredAttraction = value ? attractionData?.filter((e) => e.City.City_Name === value) : attractionData;
+  console.log('filteredCity ', filteredCity);
 
   return (
-    <div>
+    <div className="w-full min-h-full">
       <Navbar />
-      {filteredCity?.map((e)=>{
+      {filteredCity.map((c) => {
         return (
-          <>
-            <div key={e._id} className='w-full h-[100vh] mt-3'>
-              <img src={e.Image} alt="" className='w-full h-[70vh] filter drop-shadow-md brightness-50 relative' />
-              <h1 className='flex justify-center text-black font-bold'>{e.City_Name}</h1>
+          <div>
+            <div
+              className="w-full h-[70vh] bg-cover bg-center filter drop-shadow-2xl flex items-center justify-center"
+              style={{ backgroundImage: `url(${c.Image})` }}
+            >
+              <h2 className="text-white bentham-regular text-6xl text-center uppercase z-10 w-full backdrop-blur-sm flex items-center min-h-full justify-center backdrop-brightness-75" style={{ textShadow: "1px 1px 6px #000000bf" }}>
+                {c.City_Name}
+              </h2>
             </div>
-          </>
+
+            <div className=' my-20'>
+              <h1 className='text-center text-4xl font-navbar text-[#274c77] tracking-tight'>About {c.City_Name}</h1>
+              <p className="w-8/12 text-center mx-auto my-10 text-black text-lg">
+                {c.City_Description}
+              </p>
+            </div>
+            <video src={Video} autoPlay loop width="90%" height="auto" className='mx-auto my-32' >
+              Your browser does not support the video tag.
+            </video>
+            <div>
+              {filteredAttraction.map((e) => {
+                return (
+                  <div>
+                    <h1 className='text-center text-4xl font-navbar text-[#0C3A25] tracking-tight'>Attractions in {c.City_Name}</h1>
+                    <CardComponent attraction={e.Attraction_Name} location={e.Location} image={e.Image} state={e.State} description={e.Attraction_Description} type={e.Attraction_Type} city={e.City} />
+                  </div>
+                )
+              })}
+            </div>
+            <Footer />
+          </div>
         )
       })}
-      {/* <Footer /> */}
-    </div>
-  )
-}
 
-export default Cities
+    </div>
+  );
+};
+
+export default Cities;
