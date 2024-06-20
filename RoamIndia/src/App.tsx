@@ -1,14 +1,10 @@
 import './App.css'
-import Attraction from './Components/Attraction'
-// import AllRoutes from './Components/AllRoutes'
-// import Cities from './Components/Cities'
+import AllRoutes from './Components/AllRoutes'
 function App() {
 
   return (
     <>
-      {/* <AllRoutes /> */}
-      {/* <Cities /> */}
-      <Attraction />
+      <AllRoutes />
     </>
   )
 }
