@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useLayoutEffect, } from 'react';
 import AllDestinationsBg from './../assets/AllDestinationsBg.png';
 import Navbar from './Navbar';
 import Footer from './Footer';
@@ -9,11 +9,11 @@ const AllDestinations: React.FC = () => {
   const BgImage = `url(${AllDestinationsBg})`;
   const appContext = useContext(AppContext);
   const { selected, setSelected } = appContext ?? { selected: "state" };
-  const [renderData, setRenderData] = useState<Array<StateData | CityData | AttractionData>>([]); // Update the initial state type to StateData[]
-  const { cityData } = appContext ?? { cityData: [] as StateData[] }; // Update cityData type
-  const { attractionData } = appContext ?? { attractionData: [] as StateData[] }; // Update attractionData type
-  const { data } = appContext ?? { data: [] as StateData[] }; // Update data type  
-  const { setValue } = appContext ?? { setValue: (value: string) => { } };
+  const {renderData, setRenderData} = appContext ?? { setRenderData: ()=>{}} ?? {renderData : []};
+  const { cityData } = appContext ?? { cityData: [] as StateData[] };
+  const { attractionData } = appContext ?? { attractionData: [] as StateData[] };
+  const { data } = appContext ?? { data: [] as StateData[] }; 
+  const { setValue } = appContext ?? { setValue: () => { } };
   const navigate  = useNavigate(); 
 
   const handleChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -38,15 +38,18 @@ const AllDestinations: React.FC = () => {
     }
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (selected === "city") {
       setRenderData(cityData);
+      console.log('cityData', cityData)
     } else if (selected === "attractions") {
       setRenderData(attractionData);
+      console.log('attractionData', attractionData)
     } else {
       setRenderData(data);
+      console.log('data', data)
     }
-  }, [selected, cityData, attractionData, data]);
+  }, [selected, cityData, attractionData, data, setRenderData]);
 
 
   return (
@@ -90,11 +93,11 @@ const AllDestinations: React.FC = () => {
         </div>
         <div>
           <div className='grid grid-cols-3 w-12/12 justify-center items-center mx-16 content-center gap-16 '>
-            {renderData.map((e) => {
+            {renderData?.map((e) => {
               return (
                 <div key={e._id} onClick={() => handleClick(e)}>
                   <div style={{ backgroundImage: `url(${e.Image})` }} className="rounded-lg bg-no-repeat bg-cover min-w-64 min-h-64"></div>
-                  <h1 className='text-[#640000] asul-regular text-xl text-center mt-2'>{e.State_Name || e.City_Name || e.Attraction_Name}</h1>
+                  <h1 className='text-[#640000] asul-regular text-xl text-center mt-2'>{'State_Name' in e ? e.State_Name : 'City_Name' in e ? e.City_Name : 'Attraction_Name' in e ? e.Attraction_Name : ''}</h1>
                 </div>
               )
             })}

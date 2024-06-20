@@ -10,9 +10,7 @@ interface Card {
     city: object
 }
 
-
-
-const CardComponent: React.FC<Card> = ({ attraction, location, image, state, description, type, city }: Card) => {
+const CardComponent: React.FC<Card> = ({ attraction, location, image, description, type}: Card) => {
     return (
         <div className="flex min-h-screen items-center justify-center">
             <div className="relative flex w-full max-w-[72rem] flex-row rounded-xl bg-white bg-clip-border text-gray-700 shadow-2xl">

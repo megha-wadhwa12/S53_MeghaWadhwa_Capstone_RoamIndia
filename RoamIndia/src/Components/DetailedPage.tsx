@@ -1,16 +1,12 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext} from 'react';
 import Navbar from './Navbar';
 import LayerBlur from './../assets/LayerBlur.png'
-// import BackgroundBlur from './../assets/BackgroundBlur.png'
-// import TajMahal2 from './../assets/TajMahal2.png'
 import Footer from './Footer';
 import { AppContext } from '../Context/ParentContext';
 const DetailedPage: React.FC = () => {
   const appContext = useContext(AppContext);
-  const { attractionData } = appContext || { attractionData: [] }
-  console.log('attractionData', attractionData)
-  // const [renderData, setRenderData] = useState([data])
-  const [value] = useState<string>("Cellular Jail")
+  const { attractionData } = appContext || { attractionData: [] as []}
+  const {value} = appContext || {value : "Cellular Jail"}
 
   const filteredAttraction = value ? attractionData?.filter((e) => {
     return e.Attraction_Name === value
