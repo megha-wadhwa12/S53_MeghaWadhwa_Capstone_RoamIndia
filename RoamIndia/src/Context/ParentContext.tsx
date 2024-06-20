@@ -29,11 +29,9 @@ interface AppContextType {
 }
 
 interface UserType {
-    // Define your user object structure
     id?: string;
     name?: string;
     email?: string;
-    // Add other fields as needed
 }
 
 export const AppContext = createContext<AppContextType | undefined>(undefined);

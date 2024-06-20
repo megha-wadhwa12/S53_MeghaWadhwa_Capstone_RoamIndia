@@ -5,7 +5,7 @@ import Footer from './Footer';
 import { AppContext } from '../Context/ParentContext';
 const DetailedPage: React.FC = () => {
   const appContext = useContext(AppContext);
-  const { attractionData } = appContext || { attractionData: [] }
+  const { attractionData } = appContext || { attractionData: [] as []}
   const {value} = appContext || {value : "Cellular Jail"}
 
   const filteredAttraction = value ? attractionData?.filter((e) => {

@@ -5,7 +5,7 @@ import { AppContext } from '../Context/ParentContext';
 const Attraction: React.FC = () => {
   const appContext = useContext(AppContext);
   const { attractionData } = appContext ?? { attractionData: [] as [] };
-  const { value } = appContext || {value : ""};
+  const { value } = appContext || {value : "Cellular Jail"};
 
   const filteredAttraction = value ? attractionData?.filter((e) => {
     return e.Attraction_Name === value
