@@ -22,11 +22,10 @@ interface AppContextType {
     selected: string,
     setSelected: (selected: string) => void;
     handleChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-    StateData: any[];
-    CityData: any[];
-    AttractionData: any[];
     value: string;
     setValue: (value: string) => void;
+    renderData: (StateData | CityData | AttractionData)[];
+    setRenderData: (renderData: (StateData | CityData | AttractionData)[]) => void;
 }
 
 interface UserType {
@@ -88,6 +87,8 @@ const ParentContext: React.FC<ParentContextProps> = ({ children }) => {
     const [attractionData, setAttractionData] = useState<AttractionData[]>([]);
     const [selected, setSelected] = useState<string>("");
     const [value, setValue] = useState<string>("Cellular Jail")
+    const [renderData, setRenderData] = useState<Array<StateData | CityData | AttractionData>>(data);
+
 
 
     useLayoutEffect(() => {
@@ -178,7 +179,7 @@ const ParentContext: React.FC<ParentContextProps> = ({ children }) => {
     };
 
     return (
-        <AppContext.Provider value={{ aboutRef, loginDone, loginSuccessful, askUser, loggedInUser, setAskUser, setLoginDone, setLoginSuccessful, setLoggedInUser, data, setData, selected, setSelected, cityData, setCityData, attractionData, setAttractionData, handleChange, value, setValue }}>
+        <AppContext.Provider value={{ aboutRef, loginDone, loginSuccessful, askUser, loggedInUser, renderData, setRenderData, setAskUser, setLoginDone, setLoginSuccessful, setLoggedInUser, data, setData, selected, setSelected, cityData, setCityData, attractionData, setAttractionData, handleChange, value, setValue }}>
             {children}
         </AppContext.Provider>
     );

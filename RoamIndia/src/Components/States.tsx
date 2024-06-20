@@ -2,11 +2,10 @@ import React, { useContext } from 'react';
 import Navbar from './Navbar';
 import { AppContext } from '../Context/ParentContext';
 import Footer from './Footer';
-// import TajMahal2 from './../assets/TajMahal2.png';
 import Video from './../assets/4440864-hd_1920_1080_25fps.mp4';
 import CardComponent from './CardComponent';
 
-const Cities: React.FC = () => {
+const States: React.FC = () => {
   const appContext = useContext(AppContext);
   const { data } = appContext || { data: [] };
   const { attractionData } = appContext || { attractionData: [] };
@@ -62,4 +61,4 @@ const Cities: React.FC = () => {
   );
 };
 
-export default Cities;
+export default States;

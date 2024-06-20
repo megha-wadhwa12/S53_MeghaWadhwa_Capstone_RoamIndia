@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { InfiniteMovingCards } from './infinite-moving-cards'
 import Agra from './../assets/Agra.png'
 import Assam from './../assets/Assam.png'
@@ -7,23 +7,9 @@ import Delhi from './../assets/Delhi.png'
 import TamilNadu from './../assets/TamilNadu.png'
 import Goa from './../assets/Goa.png'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
 
 const TrendingDestinations: React.FC = () => {
-    // const [data, setData] = useState([])
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const response = await axios.get("https://s53-meghawadhwa-capstone-roamindia.onrender.com/api/states");
-    //             setData(response.data);
-    //         } catch (error) {
-    //             console.error("Error fetching data:", error);
-    //         }
-    //     };
-
-    //     fetchData();
-    // }, []);
+    
     const testimonials = [
         {
             Image: Agra,
