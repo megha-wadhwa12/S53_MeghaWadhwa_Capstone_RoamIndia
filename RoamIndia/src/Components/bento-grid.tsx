@@ -1,16 +1,16 @@
+import React from 'react';
 import { cn } from "./../utils/cn";
 
-export const BentoGrid = ({
-  className,
-  children,
-}: {
+interface BentoGridProps {
   className?: string;
   children?: React.ReactNode;
-}) => {
+}
+
+export const BentoGrid: React.FC<BentoGridProps> = ({ className, children }) => {
   return (
     <div
       className={cn(
-        "grid md:auto-rows-[18rem] grid-cols-1 md:grid-cols-4 gap-4 md:gap-0 max-w-9xl md:mx-10 lg:mx-16 lg:gap-8",
+        "grid md:auto-rows-[21rem] grid-cols-1 md:grid-cols-3 gap-2 md:gap-1 d:max-h-60 max-w-7xl md:mx-auto lg:mx-auto lg:gap-0 w-[80vw] h-[100vh]",
         className
       )}
     >
@@ -19,25 +19,29 @@ export const BentoGrid = ({
   );
 };
 
-export const BentoGridItem = ({
-  className,
-  title,
-  header,
-}: {
+interface BentoGridItemProps {
   className?: string;
   title?: string | React.ReactNode;
   header?: string;
-}) => {
+}
+
+export const BentoGridItem: React.FC<BentoGridItemProps> = ({ className, title, header }) => {
   return (
     <div
       className={cn(
-        "row-span-1 w-full rounded-xl group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none p-4 dark:border-white/[0.2] justify-center border border-transparent flex flex-col space-y-4 lg:space-y-2",
+        "relative row-span-1 w-full rounded-xl group transition duration-300 shadow-input dark:shadow-none p-2 dark:border-white/[0.2] flex flex-col",
         className
       )}
     >
-      <img className="rounded-md" src={header} alt="" />
-      <div className="group-hover/bento:translate-x-2 transition duration-200">
-        <div className="asul-regular text-[#24758F] text-xl text-center mb-2 lg:text-md">
+      <div className="overflow-hidden rounded-md">
+        <img
+          className="h-[52vh] w-full object-cover transform transition duration-300 group-hover:scale-110  group-hover:brightness-75"
+          src={header}
+          alt={title?.toString()}
+        />
+      </div>
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="asul-regular text-white text-center text-xl lg:text-md">
           {title}
         </div>
       </div>

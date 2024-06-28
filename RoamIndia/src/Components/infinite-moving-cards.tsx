@@ -1,5 +1,4 @@
 "use client";
-
 import { cn } from "./../utils/cn";
 import React, { useEffect, useState } from "react";
 
@@ -9,23 +8,26 @@ export const InfiniteMovingCards = ({
     speed = "normal",
     pauseOnHover = true,
     className,
+    handleCardClick,
 }: {
     items: {
-       Image: string;
-       State_Name: string;
+        Image: string;
+        State_Name: string;
     }[];
     direction?: "left" | "right";
     speed?: "fast" | "normal" | "slow";
     pauseOnHover?: boolean;
     className?: string;
+    handleCardClick: (State_Name: string)=>void;
 }) => {
     const containerRef = React.useRef<HTMLDivElement>(null);
     const scrollerRef = React.useRef<HTMLUListElement>(null);
 
     useEffect(() => {
         addAnimation();
-    },[]);
+    }, []);
     const [start, setStart] = useState(false);
+
     function addAnimation() {
         if (containerRef.current && scrollerRef.current) {
             const scrollerContent = Array.from(scrollerRef.current.children);
@@ -86,12 +88,13 @@ export const InfiniteMovingCards = ({
             >
                 {items.map((item) => (
                     <li
+                        key={item.State_Name}
                         className="w-[320px] max-w-full relative h-full rounded-2xl border border-b-0 flex-shrink-0 border-slate-700"
                         style={{
                             background:
                                 "linear-gradient(180deg, var(--slate-800), var(--slate-900)",
                         }}
-                        key={item.State_Name}
+                        onClick={() => handleCardClick(item.State_Name)}
                     >
                         <blockquote>
                             <div className="flex justify-center items-center">
@@ -100,9 +103,9 @@ export const InfiniteMovingCards = ({
                                     className="w-full cover h-full rounded-xl group-hover/card:shadow-xl"
                                     alt="thumbnail"
                                 />
-                                    <span className="absolute z-auto leading-[1.6] text-white text-2xl">
-                                        {item.State_Name}
-                                    </span>
+                                <span className="absolute z-auto leading-[1.6] text-white text-2xl">
+                                    {item.State_Name}
+                                </span>
 
                             </div>
                         </blockquote>

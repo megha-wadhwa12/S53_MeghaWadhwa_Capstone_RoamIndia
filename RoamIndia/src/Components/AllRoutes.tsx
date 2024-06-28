@@ -19,21 +19,21 @@ import Cities from './Cities'
 const AllRoutes: React.FC = () => {
   return (
     <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="/contact" element={<ContactUs />} />
-        <Route path="/trendingdestinations" element={<TrendingDestinations />} />
-        <Route path="/topattractions" element={<TopAttractions />} />     
-        <Route path="/restaurants" element={<Restaurants />} />     
-        <Route path="/hotels" element={<Hotels />} />     
-        <Route path="/:state" element={<States />} />     
-        <Route path="/:state/:city" element={<Cities />} />     
-        <Route path="/alldestinations" element={<AllDestinations />} />     
-        <Route path="/addplaceform" element={<AddNewPlaceForm />} />      
-        <Route path="/addplace" element={<AddNewPlace />} />     
-        <Route path="/place" element={<Place />} />     
-        <Route path="/:state/:city/:attraction" element={<Attraction />} />     
-        <Route path="*" element={<PageNotFound />} />
+      <Route path="/" element={<Home />} />
+      <Route path="/about" element={<AboutUs />} />
+      <Route path="/contact" element={<ContactUs />} />
+      <Route path="/trendingdestinations" element={<TrendingDestinations />} />
+      <Route path="/topattractions" element={<TopAttractions />} />
+      <Route path="/restaurants" element={<Restaurants />} />
+      <Route path="/hotels" element={<Hotels />} />
+      <Route path="/:state" element={<States />} />
+      <Route path="/:state/:city" element={<Cities />} />
+      <Route path="/alldestinations" element={<AllDestinations />} />
+      <Route path="/addplaceform" element={<AddNewPlaceForm />} />
+      <Route path="/addplace" element={<AddNewPlace />} />
+      <Route path="/place" element={<Place />} />
+      <Route path="/:state/:city/:attraction" element={<Attraction />} />
+      <Route path="*" element={<PageNotFound />} />
     </Routes>
   )
 }

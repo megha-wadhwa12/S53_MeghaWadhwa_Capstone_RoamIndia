@@ -26,6 +26,8 @@ interface AppContextType {
     setValue: (value: string) => void;
     renderData: (StateData | CityData | AttractionData)[];
     setRenderData: (renderData: (StateData | CityData | AttractionData)[]) => void;
+    theme: string;
+    setTheme: (theme: string) => void;
 }
 
 interface UserType {
@@ -75,6 +77,7 @@ export interface AttractionData {
 
 const ParentContext: React.FC<ParentContextProps> = ({ children }) => {
     const { user, isAuthenticated, isLoading } = useAuth0();
+    console.log('user', user)
     const aboutRef = useRef<HTMLDivElement>(document.createElement('div'));
     const [loginDone, setLoginDone] = useState<boolean>(true);
     const [loginSuccessful, setLoginSuccessful] = useState<boolean>(false);
@@ -86,8 +89,12 @@ const ParentContext: React.FC<ParentContextProps> = ({ children }) => {
     const [selected, setSelected] = useState<string>("");
     const [value, setValue] = useState<string>("Cellular Jail")
     const [renderData, setRenderData] = useState<Array<StateData | CityData | AttractionData>>(data);
+    const [theme, setTheme] = useState<string>(localStorage.getItem('theme') || 'light');
 
-
+    useLayoutEffect(() => {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+    }, [theme]);
 
     useLayoutEffect(() => {
         if (isAuthenticated) {
@@ -162,7 +169,6 @@ const ParentContext: React.FC<ParentContextProps> = ({ children }) => {
             try {
                 const response = await axios.get(`https://s53-meghawadhwa-capstone-roamindia.onrender.com/api/attractions`);
                 setAttractionData(response.data);
-                console.log('response.data', response.data);
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -177,7 +183,7 @@ const ParentContext: React.FC<ParentContextProps> = ({ children }) => {
     };
 
     return (
-        <AppContext.Provider value={{ aboutRef, loginDone, loginSuccessful, askUser, loggedInUser, renderData, setRenderData, setAskUser, setLoginDone, setLoginSuccessful, setLoggedInUser, data, setData, selected, setSelected, cityData, setCityData, attractionData, setAttractionData, handleChange, value, setValue }}>
+        <AppContext.Provider value={{ theme, setTheme, aboutRef, loginDone, loginSuccessful, askUser, loggedInUser, renderData, setRenderData, setAskUser, setLoginDone, setLoginSuccessful, setLoggedInUser, data, setData, selected, setSelected, cityData, setCityData, attractionData, setAttractionData, handleChange, value, setValue }}>
             {children}
         </AppContext.Provider>
     );

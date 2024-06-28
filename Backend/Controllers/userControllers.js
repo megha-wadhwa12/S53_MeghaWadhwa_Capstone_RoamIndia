@@ -1,6 +1,5 @@
 const { mongo } = require("mongoose");
 const { UserModel, UserSocialModel } = require("./../Models/UserSchema");
-// const UserValidationSchema = require("../UserValidation");
 const jwt = require("jsonwebtoken");
 const axios = require("axios");
 const UserValidationSchema = require("../UserValidation");
@@ -122,9 +121,9 @@ const AddNewUserToNonSocial = async (req, res) => {
     )[0];
 
     const { username } = authUser;
-    const { name, email } = user;
+    const { name, email, profilePicture } = user;
     const { error, value } = UserValidationSchema.validate(
-      { Name: name, userName: username, emailId: email },
+      { Name: name, userName: username, emailId: email, profilePicture: profilePicture },
       {
         abortEarly: false,
       }
@@ -136,12 +135,13 @@ const AddNewUserToNonSocial = async (req, res) => {
       console.log({ error: allErrors });
       res.status(400).json({ error: allErrors[0] });
     } else {
-      const { Name, userName, emailId } = value;
+      const { Name, userName, emailId, profilePicture } = value;
       const postUser = await UserModel.create({
         Name,
         userName,
         emailId,
         Favourites: [],
+        profilePicture,
       });
       const authData = {
         userName: postUser.userName,
@@ -151,7 +151,6 @@ const AddNewUserToNonSocial = async (req, res) => {
           authData.userName,
           process.env.JWT_SECRET_KEY
         );
-        // console.log("access_token1: ", access_token);
         console.log({
           access_token: access_token,
           postUser: postUser,
@@ -171,9 +170,9 @@ const AddNewUserToNonSocial = async (req, res) => {
 
 const AddNewUserToSocial = async (req, res) => {
   try {
-    const { name, username, email } = req.body;
+    const { name, username, email, profilePicture } = req.body;
     const { error, value } = UserValidationSchema.validate(
-      { Name: name, userName: username, emailId: email },
+      { Name: name, userName: username, emailId: email, profilePicture: profilePicture },
       {
         abortEarly: false,
       }
@@ -185,7 +184,7 @@ const AddNewUserToSocial = async (req, res) => {
       console.log({ error: allErrors });
       res.status(400).json({ error: allErrors[0] });
     } else {
-      const { Name, userName, emailId } = value;
+      const { Name, userName, emailId, profilePicture } = value;
       const data = await UserSocialModel.find({ userName });
       if (data.length > 0) {
         return res.status(400).json({ error: "userName already exists" });
@@ -196,6 +195,7 @@ const AddNewUserToSocial = async (req, res) => {
         userName,
         emailId,
         Favourites: [],
+        profilePicture
       });
       const authData = {
         userName: postUser.userName,

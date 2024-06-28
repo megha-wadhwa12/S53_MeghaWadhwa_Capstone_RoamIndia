@@ -61,7 +61,7 @@ const Home: React.FC = () => {
             src={Subline}
             alt="Subline text image"
           />
-          <button className="btn btn-md bg-black text-white text-xs lg:btn-wide lg:text-sm" onClick={() => handleClick()}>
+          <button className="btn btn-m text-white text-xs lg:btn-wide lg:text-sm rounded-md black-btn" onClick={() => handleClick()}>
             DISCOVER YOUR JOURNEY
             <span>
               <svg
@@ -82,7 +82,7 @@ const Home: React.FC = () => {
           </button>
         </div>
       </div>
-      <div className="carousel w-screen h-[16rem] lg:h-[28rem]">
+      <div className="carousel w-full h-[16rem] lg:h-[28rem]">
         <div id="slide1" className="carousel-item relative w-full">
           <img src={CarouselImage1} className="w-full" />
 
