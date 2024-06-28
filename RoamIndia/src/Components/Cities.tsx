@@ -33,15 +33,15 @@ const Cities: React.FC = () => {
             </div>
 
             <div className=' my-20'>
-              <h1 className='text-center text-4xl font-navbar text-[#274c77] blue tracking-tight'>About {c.City_Name}</h1>
-              <p className="w-8/12 text-center mx-auto my-10   text-lg">
+              <h1 className='text-center text-4xl font-navbar blue-light blue tracking-tight'>About {c.City_Name}</h1>
+              <p className="w-8/12 text-center mx-auto my-10 text-lg">
                 {c.City_Description}
               </p>
             </div>
             <video src={Video} autoPlay loop width="90%" height="auto" className='mx-auto my-32' >
               Your browser does not support the video tag.
             </video>
-            {filteredAttraction.length != 0 && <h1 className='text-center text-4xl font-navbar text-[#0C3A25] green tracking-tight'>Attractions in {c.City_Name}</h1>
+            {filteredAttraction.length != 0 && <h1 className='text-center text-4xl font-navbar green-light green tracking-tight'>Attractions in {c.City_Name}</h1>
             }
             <div>
               {filteredAttraction.map((e) => {

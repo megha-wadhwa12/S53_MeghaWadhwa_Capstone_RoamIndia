@@ -66,7 +66,23 @@ export default {
           ".black-btn": {
             "background-color": "#000000",
             "border": "none",
-          }
+          },
+          ".blue-light": {
+            "color": "#24758F",
+          },
+          ".teal-light":{
+            "color": "#386367",
+          },
+          ".red-light":{
+            "color": "#640000",
+          },
+          ".seagreen-light":{
+            "color": "#359388B3",
+          },
+          ".green-light":{
+            "color": "#0C3A25",
+          },
+          
         },
       },
       {
