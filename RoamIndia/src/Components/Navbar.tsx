@@ -6,21 +6,24 @@ import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { AppContext } from "../Context/ParentContext";
 import { deleteCookie } from "./../ManageCookies";
+import ThemeComponent from "./ThemeComponent";
+import ProfilePicture from './../assets/BlankProfilePicture.png'
+import BlueLogo from './../assets/RoamIndiaLogoBlue.png'
 
 const Navbar: React.FC = () => {
-  const { loginWithRedirect } = useAuth0();
+  const { user, loginWithRedirect } = useAuth0();
   const { logout } = useAuth0();
   const appContext = useContext(AppContext);
   const { loginSuccessful, loginDone } = appContext || {
     loginSuccessful: false,
     loginDone: true,
   };
-  // const { user, isAuthenticated, isLoading } = useAuth0();
+  const { theme} = appContext || { theme: 'light'};
 
   return (
     <div>
-      <div className="navbar">
-        <div className="navbar-start w-full">
+      <div className="navbar w-full">
+        <div className=" navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
@@ -40,7 +43,7 @@ const Navbar: React.FC = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow  rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52 dark: text-white"
             >
               <li>
                 <a>About</a>
@@ -56,13 +59,13 @@ const Navbar: React.FC = () => {
               </li>
             </ul>
           </div>
-          {/* <a className="btn btn-ghost text-xl">daisyUI</a> */}
           <Link to={"/"}>
-            <img src={Logo} alt="Logo" className="w-20" />
+            {theme === 'light' ? <img src={Logo} alt="Logo" className="w-20 brightness-150" /> : <img src={BlueLogo} alt="Logo" className="w-20 brightness-150" />
+            }
           </Link>
         </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 lg: flex lg:gap-8 text-black text-lg jacques-francois-regular">
+        <div className="navbar-center hidden text-center lg:flex">
+          <ul className="menu menu-horizontal px-1 lg: flex lg:gap-9 text-lg jacques-francois-regular">
             <li>
               About Us
             </li>
@@ -83,39 +86,90 @@ const Navbar: React.FC = () => {
             </li>
           </ul>
         </div>
-        {/* <label className="cursor-pointer grid place-items-center">
-          <input type="checkbox" value="synthwave" className="toggle theme-controller bg-base-content row-start-1 col-start-1 col-span-2" />
-          <svg className="col-start-1 row-start-1 stroke-base-100 fill-base-100" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5" /><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" /></svg>
-          <svg className="col-start-2 row-start-1 stroke-base-100 fill-base-100" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-        </label> */}
-        {loginDone ? (
-          <div className="lg:w-[10rem]">
-            {!loginSuccessful ? (
-              <button
-                onClick={() => loginWithRedirect()}
-                className="inline-flex text-white h-24 lg:py-5 py-2.5 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-white-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 w-[8rem] text-xs  lg:w-[16rem] lg:text-[14px]"
-              >
-                Sign up
-              </button>
-            ) : (
-              <button
-                onClick={() => {
-                  logout({
-                    logoutParams: { returnTo: window.location.origin },
-                  });
-                  deleteCookie("username");
-                }}
-                className="inline-flex text-white h-24 lg:py-5 py-2.5 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-white-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 w-[8rem] text-xs  lg:w-[16rem] lg:text-[14px]"
-              >
-                Log Out
-              </button>
-            )}
-          </div>
-        ) : (
-          <button className="inline-flex text-white h-24 lg:py-5 py-2.5 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-white-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 w-[8rem] text-xs  lg:w-[16rem] lg:text-[14px]">
-            Logging in
-          </button>
-        )}
+        <div>
+          {loginDone ? (
+            <div className="">
+              {!loginSuccessful ? (
+                <button
+                  onClick={() => loginWithRedirect()}
+                  className="inline-flex text-white h-24 lg:py-5 py-2.5 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-white-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 w-[8rem] text-xs  lg:w-[8rem] lg:text-[14px]"
+                >
+                  Sign up
+                </button>
+              ) : (
+                // <button
+                //   className="inline-flex text-white h-24 lg:py-5 py-2.5 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-white-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 w-[8rem] text-xs  lg:w-[10rem] lg:text-[14px]"
+                // >
+                //   Log Out
+                // </button>
+                // <div className="dropdown dropdown-end">
+                //   <div tabIndex={0} role="button"><button className="avatar">
+                //     <div className="w-10 rounded-full">
+                //       <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                //     </div>
+                //   </button></div>
+                //   <ul
+                //     tabIndex={0}
+                //     className="menu dropdown-content bg-base-100 rounded-box z-[1] mt-4 w-52 p-2 shadow">
+                //     <li><a>Dark Mode</a></li>
+                //     <li><a onClick={() => {
+                //       logout({
+                //         logoutParams: { returnTo: window.location.origin },
+                //       });
+                //       deleteCookie("username");
+                //     }}>Logout</a></li>
+                //   </ul>
+                // </div>
+
+                <div className="dropdown dropdown-end dropdown-hover">
+                  <button
+                    id="dropdownUserAvatarButton"
+                    tabIndex={0}
+                    className="flex text-sm bg-[#24758f] rounded-full md:me-0"
+                    type="button"
+                  >
+                    <span className="sr-only">Open user menu</span>
+                    {user?.picture ? <img className="w-10 rounded-full" src={user?.picture} alt="user photo" />
+                      : <img className="w-10 rounded-full" src={ProfilePicture} alt="user photo" />
+                    }
+                  </button>
+
+                  <div
+                    id="dropdownAvatar"
+                    tabIndex={0}
+                    className="dropdown-content group-hover:block absolute mt-2 z-50 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
+                  >
+                    <div className="px-4 py-3 text-sm text-gray-900 dark:text-white capitalize">
+                      <div>{user?.nickname}</div>
+                      <div className="font-medium truncate">{user?.email}</div>
+                    </div>
+                    <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownUserAvatarButton">
+                      <li>
+                        <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Complete Your Profile</a>
+                      </li>
+                      {/* <li>
+                        <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                      </li> */}
+                      <ThemeComponent />
+                    </ul>
+                    <div className="py-2">
+                      <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                        onClick={() => {
+                          logout({
+                            logoutParams: { returnTo: window.location.origin },
+                          });
+                          deleteCookie("username");
+                        }}>Sign out</a>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          ) : (
+            <span className="loading loading-spinner loading-md bg-slate-700"></span>
+
+          )}
+        </div>
       </div>
     </div>
   );

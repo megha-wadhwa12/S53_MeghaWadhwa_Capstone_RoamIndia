@@ -19,11 +19,11 @@ const Attraction: React.FC = () => {
             <div key={e._id}>
               <img src={e.Image} alt="" className='w-[100vw] h-[55vh] mt-5 absolute filter brightness-50' />
               <img src={e.Image} alt="" className='relative h-[55vh] w-[100vw] top-5 filter opacity-100 blur-md drop-shadow-lg brightness-100' />
-            </div>
+            </div>  
             <div className='flex justify-center w-full h-full absolute mt-[-30vh]'>
-              <div className='w-10/12 h-full rounded-lg bg-white mb-16 drop-shadow-2xl shadow-slate-950'>
+              <div className='w-10/12 h-full rounded-lg glass bg-white opacity-75 mb-16 drop-shadow-2xl shadow-slate-300 shadow-md'>
                 <div className='flex'>
-                  <img src={e.Image} alt={e.Attraction_Name} className='w-6/12 h-full rounded-l-lg ' />
+                  <img src={e.Image} alt={e.Attraction_Name} className='w-6/12 h-full rounded-l-lg' />
                   <div className='m-10 flex flex-col gap-6'>
                     <p className='w-full text-3xl font-navbar tracking-[-0.15rem] text-[#AA5151]'>{e.Attraction_Name}</p>
                     <p className='text-black'>{e.Attraction_Description}</p>
@@ -40,8 +40,8 @@ const Attraction: React.FC = () => {
                 <input type="radio" name="my_tabs_1" role="tab" className="tab font-navbar text-[#AA5151] h-[10vh] text-3xl" aria-label="Overview" checked />
                 <div role="tabpanel" className="tab-content p-10">
                   <div>
-                    <h1 className='text-center text-4xl font-navbar text-[#0C3A25] tracking-tight'>The Basics</h1>
-                    <p className='text-black w-9/12 text-center mx-auto my-10'>{e.Attraction_Description}
+                    <h1 className='text-center text-4xl font-navbar text-[#0C3A25] green tracking-tight'>The Basics</h1>
+                    <p className='w-9/12 text-center mx-auto my-10'>{e.Attraction_Description}
                     </p>
                   </div>
                   <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 mt-36 w-full">
@@ -49,7 +49,7 @@ const Attraction: React.FC = () => {
                       <h1 className="mb-4 text-2xl font-semibold text-gray-900 dark:text-white md:text-3xl lg:text-2xl"><span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Things To Know Before You Go</span></h1>
                       {e.Things_To_Know.map((list) => {
                         return (
-                          <ul className="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-black-400">
+                          <ul className="max-w-md space-y-1 list-disc list-inside dark:text-black-400">
                             <li>
                               {list}
                             </li>
@@ -59,8 +59,8 @@ const Attraction: React.FC = () => {
 
                     </div>
                     <div className='w-8/12'>
-                      <h1 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white md:text-2xl lg:text-2xl"><span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">How To Get There</span></h1>
-                      <p className="mb-3 text-gray-500 dark:text-black-400">{e.How_To_Get_There}</p>
+                      <h1 className="mb-4 text-xl font-semibold md:text-2xl lg:text-2xl"><span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">How To Get There</span></h1>
+                      <p className="mb-3dark:text-black-400">{e.How_To_Get_There}</p>
                     </div>
                   </div>
                 </div>

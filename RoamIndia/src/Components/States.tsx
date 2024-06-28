@@ -11,8 +11,8 @@ const States: React.FC = () => {
   const { attractionData } = appContext || { attractionData: [] };
   const { value } = appContext || { value: '' };
 
-  const filteredCity = value ? data?.filter((e) => e.State_Name === value) : data;
-  console.log('filteredCity ', filteredCity);
+  const filteredState = value ? data?.filter((e) => e.State_Name === value) : data;
+  console.log('filteredState ', filteredState);
 
   const filteredAttraction = value ? attractionData?.filter((e) => e.State.State_Name === value) : attractionData;
   console.log('filteredAttraction ', filteredAttraction);
@@ -20,7 +20,7 @@ const States: React.FC = () => {
   return (
     <div className="w-full min-h-full">
       <Navbar />
-      {filteredCity.map((c) => {
+      {filteredState.map((c) => {
         return (
           <div>
             <div
@@ -33,8 +33,8 @@ const States: React.FC = () => {
             </div>
 
             <div className=' my-20'>
-              <h1 className='text-center text-4xl font-navbar text-[#274c77] tracking-tight'>About {c.State_Name}</h1>
-              <p className="w-8/12 text-center mx-auto my-10 text-black text-lg">
+              <h1 className='text-center text-4xl font-navbar text-[#274c77] blue tracking-tight'>About {c.State_Name}</h1>
+              <p className="w-8/12 text-center mx-auto my-10 text-lg">
                 {c.State_Description}
               </p>
             </div>
@@ -47,7 +47,7 @@ const States: React.FC = () => {
               {filteredAttraction.map((e) => {
                 return (
                   <div>
-                    <CardComponent attraction={e.Attraction_Name} location={e.Location} image={e.Image} state={e.State} description={e.Attraction_Description} type={e.Attraction_Type} city={e.City} />
+                    <CardComponent attraction={e.Attraction_Name} location={e.Location} image={e.Image} state={e.State.State_Name} description={e.Attraction_Description} type={e.Attraction_Type} city={e.City.City_Name} />
                   </div>
                 )
               })}

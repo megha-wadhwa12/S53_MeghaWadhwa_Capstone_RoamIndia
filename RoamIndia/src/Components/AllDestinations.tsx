@@ -67,7 +67,7 @@ const AllDestinations: React.FC = () => {
                       <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                     </svg>
                   </div>
-                  <input type="search" id="default-search" className="drop-shadow-2xl block w-full p-3 ps-10 text-sm text-gray-900 rounded-lg bg-gray-50 focus:outline-none" placeholder="Search..." required />
+                  <input type="search" id="default-search" className="drop-shadow-2xl block w-full p-3 ps-10 text-sm text-gray-900 rounded-lg bg-gray-200 focus:outline-none" placeholder="Search..." required />
                   <button type="submit" className="text-white absolute end-0 bottom-0 bg-[#42A69A] hover:bg-[#359388] focus:ring-3 focus:outline-none focus:ring-blue-300 font-sm rounded-r-lg text-md px-8 py-2.5">Search</button>
                 </div>
               </form>
@@ -81,11 +81,9 @@ const AllDestinations: React.FC = () => {
         </div>
         <div className='py-20'>
           <form className="max-w-4xl ml-20">
-            <label className='text-[#386367] text-3xl asul-regular'>Filter places by</label>
-            <select onChange={handleChange} id="countries" className="bg-gray-50 drop-shadow-md border-none text-gray-900 text-sm rounded-md block w-full p-3.5 mt-6">
-              {/* <option>Most Popular</option> */}
+            <label className='text-[#386367] blue text-3xl asul-regular'>Filter places by</label>
+            <select onChange={handleChange} id="countries" className="bg-gray-50 drop-shadow-md border-none text-gray-900 text-sm rounded-md block w-[30vw] p-3.5 mt-6">
               <option value={"state"}>State</option>
-              {/* <option value={"region"}>Region</option> */}
               <option value={"city"}>City</option>
               <option value={"attractions"}>All Attractions</option>
             </select>
@@ -97,7 +95,7 @@ const AllDestinations: React.FC = () => {
               return (
                 <div key={e._id} onClick={() => handleClick(e)}>
                   <div style={{ backgroundImage: `url(${e.Image})` }} className="rounded-lg bg-no-repeat bg-cover min-w-64 min-h-64"></div>
-                  <h1 className='text-[#640000] asul-regular text-xl text-center mt-2'>{'State_Name' in e ? e.State_Name : 'City_Name' in e ? e.City_Name : 'Attraction_Name' in e ? e.Attraction_Name : ''}</h1>
+                  <h1 className='text-[#640000] white italic asul-regular text-xl text-center mt-2'>{'State_Name' in e ? e.State_Name : 'City_Name' in e ? e.City_Name : 'Attraction_Name' in e ? e.Attraction_Name : ''}</h1>
                 </div>
               )
             })}
