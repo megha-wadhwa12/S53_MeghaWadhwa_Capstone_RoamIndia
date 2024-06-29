@@ -8,7 +8,7 @@ const attractionsSchema = mongoose.Schema({
     Attraction_Description: {type: String,required: [true, "Please add the description about the Attraction"]},
     Location: {type: String,required: [true,"Please add the Location"]},
     Attraction_Type: {type: String,required: [true,"Please add the type of attraction"]},
-    // Photos: [{type: String}],
+    Photos: [{type: String}],
     Things_To_Know: [{type: String}],
     How_To_Get_There: {type: String},
 })
