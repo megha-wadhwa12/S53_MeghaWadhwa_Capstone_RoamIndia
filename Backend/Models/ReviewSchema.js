@@ -1,16 +1,16 @@
 const mongoose = require("mongoose");
 
 const reviewSchema = mongoose.Schema({
-  userName: { type: String, required: true },
-  rating: { type: Number, required: true },
-  images: [String],
-  review: {type: String},
+  UserName: { type: String, required: true },
+  Rating: { type: Number, required: true },
+  Images: [String],
+  Review: {type: String},
   State: { type: mongoose.Schema.Types.ObjectId, ref: "stateschemas" ,required: true},
   City: { type: mongoose.Schema.Types.ObjectId, ref: "cityschemas" ,required: true},
   Attraction: { type: mongoose.Schema.Types.ObjectId, ref: "attractionschemas" ,required: true},
-  date: { type: Date, default: Date.now },
-  upvotes: { type: Number, default: 0 },
-  visitedPlaceOn: { type: Date, default: Date.now },
+  Date: { type: Date, default: Date.now },
+  UpVotes: { type: Number, default: 0 },
+  VisitedPlaceOn: { type: Date, default: Date.now },
 });
 
 const ReviewModel = mongoose.model("reviewschemas", reviewSchema);
