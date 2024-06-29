@@ -3,59 +3,6 @@ const CityModel = require("./../Models/CitySchema");
 const StateModel = require("./../Models/StateSchema");
 const axios = require("axios");
 
-// const googleAPI001 = async (City_Name) => {
-//   const axios = require("axios");
-
-//   const options = {
-//     method: "POST",
-//     url: "https://google-api31.p.rapidapi.com/imagesearch",
-//     headers: {
-//       "content-type": "application/json",
-//       "X-RapidAPI-Key": "61a01a4182msh9243468b01ff47bp1003abjsnc6cc22e6f55a",
-//       "X-RapidAPI-Host": "google-api31.p.rapidapi.com",
-//     },
-//     data: {
-//       text: City_Name,
-//       safesearch: "off",
-//       region: "in-en",
-//       color: "",
-//       size: "",
-//       type_image: "",
-//       layout: "",
-//       max_results: 30,
-//     },
-//   };
-
-//   try {
-//     const response = await axios.request(options);
-//     const photos = response.data.result;
-//     const imageData = response.data.result[1];
-//     if (!imageData) {
-//       res.status(404).json({ message: "Image not found" });
-//       throw new Error("Image data not found");
-//     }
-//     const imageUrl = imageData.image;
-//     let arrayPhotos = [];
-//     if (photos.length == 30) {
-//       photos.forEach((e) => {
-//         const allPhotos = e.image;
-//         console.log("allPhotos", allPhotos);
-//         if (!allPhotos) {
-//           res.status(404).json({ message: "Image not found" });
-//           throw new Error("Image data not found");
-//         }
-//         arrayPhotos.push(allPhotos);
-//       });
-//     } else {
-//       console.log("Length of photos is less");
-//     }
-//     console.log(imageUrl);
-//     return { imageUrl, arrayPhotos };
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
-
 const duckDuckGo001 = async (City_Name) => {
   const options = {
     method: "GET",
