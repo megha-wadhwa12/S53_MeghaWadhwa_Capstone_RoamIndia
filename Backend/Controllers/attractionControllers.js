@@ -17,47 +17,7 @@ const getAllAttractions = async (req, res) => {
   }
 };
 
-const createAllAttractions = async (req, res) => {
-  try {
-    const {
-      Attraction_Name,
-      State_Name,
-      City_Name,
-      Image,
-      Attraction_Description,
-      Location,
-      Attraction_Type,
-      Things_To_Know,
-      How_To_Get_There,
-    } = req.body;
 
-    const State = await StateModel.find({ State_Name }).exec();
-    const StateId = State[0]._id;
-    // console.log("State", StateId);
-
-    const City = await CityModel.find({ City_Name }).exec();
-    const CityId = City[0]._id;
-    // console.log("City", CityId);
-
-    // const imageURL = await getImageFromDuckImageSearch(Attraction_Name);
-    const postAttraction = await AttractionModel.create({
-      Attraction_Name,
-      State: StateId,
-      City: CityId,
-      Image,
-      Attraction_Description,
-      Location,
-      Attraction_Type,
-      Things_To_Know,
-      How_To_Get_There,
-    });
-    res.status(201).json({ message: "Create Attraction", postAttraction });
-  } catch (error) {
-    console.log("error", error);
-    res.status(500).json({ message: "Error adding an Attraction" });
-    throw new error();
-  }
-};
 
 const updateAttraction = async (req, res) => {
   try {
