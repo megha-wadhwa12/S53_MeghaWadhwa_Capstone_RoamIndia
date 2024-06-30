@@ -67,7 +67,7 @@ const createAllCities = async (req, res) => {
     const State = await StateModel.find({ State_Name }).exec();
     const StateId = State[0]._id;
 
-    const { imageUrl, arrayPhotos } = await DuckDuckGoImageSearch (City_Name);
+    const { imageUrl, arrayPhotos } = await DuckDuckGoImageSearch(City_Name);
     const postCity = await CityModel.create({
       City_Name,
       State: StateId, 
@@ -81,7 +81,6 @@ const createAllCities = async (req, res) => {
     });
     res.status(201).json({ message: "Create City", postCity });
   } catch (error) {
-    console.log('error', error)
     res.status(500).json({ message: "Error adding a city" });
     throw new Error();
   }
