@@ -1,12 +1,14 @@
 import './App.css'
-import AllRoutes from './Components/AllRoutes'
-import ScrollToTop from './Components/ScrollToTop'
+import WriteReview from './Components/WriteReview'
+// import AllRoutes from './Components/AllRoutes'
+// import ScrollToTop from './Components/ScrollToTop'
 function App() {
 
   return (
     <>
-      <ScrollToTop />
-      <AllRoutes />
+      {/* <ScrollToTop />
+      <AllRoutes /> */}
+      <WriteReview />
     </>
   )
 }
