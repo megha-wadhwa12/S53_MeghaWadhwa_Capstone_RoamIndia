@@ -118,7 +118,6 @@ const photosAdd = async (req, res) => {
     const { Attraction_Name } = req.body;
 
     const { arrayPhotos } = await DuckDuckGoImageSearch(Attraction_Name);
-    console.log("arrayPhotos", arrayPhotos);
 
     const updateAttraction = await AttractionModel.findByIdAndUpdate(
       req.params.id,

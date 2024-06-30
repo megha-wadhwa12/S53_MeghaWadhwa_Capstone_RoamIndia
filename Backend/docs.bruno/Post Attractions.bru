@@ -1,0 +1,30 @@
+meta {
+  name: Post Attractions
+  type: http
+  seq: 10
+}
+
+post {
+  url: https://s53-meghawadhwa-capstone-roamindia.onrender.com/api/attractions
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "Attraction_Name": "Juhu Beach",
+    "State_Name": "Maharashtra",
+    "City_Name": "Mumbai",
+    "Attraction_Description": "Juhu Beach is one of Mumbai's most famous and expansive beaches, known for its lively atmosphere and scenic views.",
+    "Location": "Juhu, Mumbai, Maharashtra, India",
+    "Attraction_Type": "Beach",
+    "Things_To_Know": [
+      "Stretching along the Arabian Sea coastline, Juhu Beach is a popular spot for relaxing walks, picnics, and enjoying sunset views.",
+      "Famous for its street food stalls offering Mumbai's iconic snacks like pav bhaji, bhel puri, and vada pav.",
+      "Juhu Beach attracts both locals and tourists, making it a vibrant place for people-watching and cultural experiences.",
+      "Nearby attractions include Juhu Chowpatty, a bustling promenade with activities like horse rides and camel rides.",
+      "The beach is a favorite filming location for Bollywood movies and television commercials, adding to its charm."
+    ],
+    "How_To_Get_There": "Juhu Beach is easily accessible by road from various parts of Mumbai. It is approximately 7 kilometers from Chhatrapati Shivaji Maharaj International Airport."
+  }
+}
