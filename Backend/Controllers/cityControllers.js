@@ -22,9 +22,7 @@ const duckDuckGo001 = async (City_Name) => {
   try {
     const response = await axios.request(options);
     const photos = response.data.data;
-    console.log("photos", photos);
     const imageData = response.data.data[1];
-    console.log("imageData", imageData);
     if (!imageData) {
       res.status(404).json({ message: "Image not found" });
       throw new Error("Image data not found");
@@ -33,30 +31,26 @@ const duckDuckGo001 = async (City_Name) => {
     let arrayPhotos = [];
     for (let i = 0; i < 30; i++) {
       const allPhotos = photos[i].image;
-      console.log("allPhotos", allPhotos);
       if (!allPhotos) {
         res.status(404).json({ message: "Image not found" });
         throw new Error("Image data not found");
       }
       arrayPhotos.push(allPhotos);
       if (arrayPhotos.length === 30) {
-        break; // Break the loop once we have 30 photos
+        break;
       }
     }
-    console.log(imageUrl);
     return { imageUrl, arrayPhotos };
   } catch (error) {
-    console.error(error);
+    throw new Error();
   }
 };
 
 const getAllCities = async (req, res) => {
   try {
     const AllCities = await CityModel.find({}).populate("State");
-    console.log("AllCities", AllCities);
     res.status(200).json(AllCities);
   } catch (error) {
-    // console.log("error", error);
     res.status(500).json({ message: "Error fetching All Cities" });
   }
 };
@@ -77,7 +71,6 @@ const createAllCities = async (req, res) => {
 
     const State = await StateModel.find({ State_Name }).exec();
     const StateId = State[0]._id;
-    console.log("State", StateId);
 
     const { imageUrl, arrayPhotos } = await duckDuckGo001(City_Name);
     const postCity = await CityModel.create({
@@ -93,8 +86,8 @@ const createAllCities = async (req, res) => {
     });
     res.status(201).json({ message: "Create City", postCity });
   } catch (error) {
-    console.log("error", error);
     res.status(500).json({ message: "Error adding a city" });
+    throw new Error();
   }
 };
 
@@ -105,12 +98,10 @@ const updateCities = async (req, res) => {
       req.body,
       { new: true }
     );
-    res
-      .status(200)
-      .json({ message: "Updated the City", updateCity });
+    res.status(200).json({ message: "Updated the City", updateCity });
   } catch (error) {
-    console.log("error", error);
     res.status(500).json({ message: "Error Updating City" });
+    throw new Error();
   }
 };
 

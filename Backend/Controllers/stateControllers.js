@@ -4,11 +4,10 @@ const StateModel = require("./../Models/StateSchema");
 const getAllStates = async (req, res) => {
   try {
     const allStates = await StateModel.find({});
-    console.log("allStates", allStates);
     res.status(200).json(allStates);
   } catch (error) {
-    console.log("error", error);
     res.status(500).json({ message: "Error fetching All States" });
+    throw new Error();
   }
 };
 
@@ -22,8 +21,8 @@ const getOneState = async (req, res) => {
       return res.status(404).json({ message: "State not found" });
     }
   } catch (error) {
-    console.log("error", error);
     res.status(500).json({ message: "Error fetching single State" });
+    throw new Error();
   }
 };
 
@@ -34,17 +33,15 @@ const updateStates = async (req, res) => {
       req.body,
       { new: true }
     );
-    res
-      .status(200)
-      .json({ message: "Updated the State", updateState });
+    res.status(200).json({ message: "Updated the State", updateState });
   } catch (error) {
-    console.log("error", error);
     res.status(500).json({ message: "Error Updating State" });
+    throw new Error();
   }
 };
 
 module.exports = {
   getAllStates,
   getOneState,
-  updateStates
+  updateStates,
 };

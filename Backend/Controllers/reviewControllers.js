@@ -7,11 +7,10 @@ const StateModel = require("../Models/StateSchema");
 const getAllReviews = async (req, res) => {
   try {
     const allReviews = await ReviewModel.find({});
-    console.log("allReviews", allReviews);
     res.status(200).json(allReviews);
   } catch (error) {
-    console.log("error", error);
     res.status(500).json({ message: "Error fetching All Reviews" });
+    throw new Error();
   }
 };
 
@@ -25,8 +24,8 @@ const getOneReview = async (req, res) => {
       return res.status(404).json({ message: "Review not found" });
     }
   } catch (error) {
-    console.log("error", error);
     res.status(500).json({ message: "Error fetching single Review" });
+    throw new Error();
   }
 };
 
@@ -65,11 +64,11 @@ const addReview = async (req, res) => {
       Date,
       UpVoted,
       VisitedPlaceOn,
-    }); 
+    });
     res.status(201).json({ message: "Add Review", postReview });
   } catch (error) {
-    console.log("error", error);
     res.status(500).json({ message: "Error adding a review" });
+    throw new Error();
   }
 };
 
@@ -80,12 +79,10 @@ const updateReviews = async (req, res) => {
       req.body,
       { new: true }
     );
-    res
-      .status(200)
-      .json({ message: "Updated the review", updateReview });
+    res.status(200).json({ message: "Updated the review", updateReview });
   } catch (error) {
-    console.log("error", error);
     res.status(500).json({ message: "Error Updating Review" });
+    throw new Error();
   }
 };
 
@@ -93,5 +90,5 @@ module.exports = {
   getAllReviews,
   getOneReview,
   addReview,
-  updateReviews
+  updateReviews,
 };
