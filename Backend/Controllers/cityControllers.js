@@ -2,27 +2,22 @@ const { mongo } = require("mongoose");
 const CityModel = require("./../Models/CitySchema");
 const StateModel = require("./../Models/StateSchema");
 const axios = require("axios");
-
-const duckDuckGo001 = async (City_Name) => {
+ 
+const DuckDuckGoImageSearch = async (Attraction_Name) => {
   const options = {
     method: "GET",
-    url: "https://duckduckgo10.p.rapidapi.com/search/images",
-    params: {
-      term: City_Name,
-      safeSearch: "off",
-      region: "in-en",
-      offset: "30",
-    },
+    url: "https://duckduckgo-image-search.p.rapidapi.com/search/image",
+    params: { q: Attraction_Name },
     headers: {
-      "X-RapidAPI-Key": "61a01a4182msh9243468b01ff47bp1003abjsnc6cc22e6f55a",
-      "X-RapidAPI-Host": "duckduckgo10.p.rapidapi.com",
+      "x-rapidapi-key": "0b1df29a1dmsh64151f3c5b659f9p124e5ajsn77f7c6120674",
+      "x-rapidapi-host": "duckduckgo-image-search.p.rapidapi.com",
     },
   };
 
   try {
     const response = await axios.request(options);
-    const photos = response.data.data;
-    const imageData = response.data.data[1];
+    const photos = response.data.results;
+    const imageData = photos[1];
     if (!imageData) {
       res.status(404).json({ message: "Image not found" });
       throw new Error("Image data not found");
@@ -37,7 +32,7 @@ const duckDuckGo001 = async (City_Name) => {
       }
       arrayPhotos.push(allPhotos);
       if (arrayPhotos.length === 30) {
-        break;
+        break; // Break the loop once we have 30 photos
       }
     }
     return { imageUrl, arrayPhotos };
@@ -72,10 +67,10 @@ const createAllCities = async (req, res) => {
     const State = await StateModel.find({ State_Name }).exec();
     const StateId = State[0]._id;
 
-    const { imageUrl, arrayPhotos } = await duckDuckGo001(City_Name);
+    const { imageUrl, arrayPhotos } = await DuckDuckGoImageSearch (City_Name);
     const postCity = await CityModel.create({
       City_Name,
-      State: StateId,
+      State: StateId, 
       Latitude,
       Longitude,
       Image: imageUrl,
@@ -86,6 +81,7 @@ const createAllCities = async (req, res) => {
     });
     res.status(201).json({ message: "Create City", postCity });
   } catch (error) {
+    console.log('error', error)
     res.status(500).json({ message: "Error adding a city" });
     throw new Error();
   }
