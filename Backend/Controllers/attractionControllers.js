@@ -36,9 +36,9 @@ const DuckDuckGoImageSearch = async (Attraction_Name) => {
         break; // Break the loop once we have 30 photos
       }
     }
-    return { imageUrl, arrayPhotos }
+    return { imageUrl, arrayPhotos };
   } catch (error) {
-    console.error(error);
+    throw new Error();
   }
 };
 
@@ -47,11 +47,10 @@ const getAllAttractions = async (req, res) => {
     const allAttractions = await AttractionModel.find({})
       .populate("State")
       .populate("City");
-    console.log("allAttractions", allAttractions);
     res.status(200).json(allAttractions);
   } catch (error) {
-    console.log("error", error);
     res.status(500).json({ message: "Error fetching All Attractions" });
+    throw new Error();
   }
 };
 
@@ -76,7 +75,9 @@ const createAllAttractions = async (req, res) => {
     const City = await CityModel.find({ City_Name }).exec();
     const CityId = City[0]._id;
 
-    const { imageUrl, arrayPhotos } = await DuckDuckGoImageSearch(Attraction_Name);
+    const { imageUrl, arrayPhotos } = await DuckDuckGoImageSearch(
+      Attraction_Name
+    );
     const postAttraction = await AttractionModel.create({
       Attraction_Name,
       State: StateId,
@@ -91,51 +92,52 @@ const createAllAttractions = async (req, res) => {
     });
     res.status(201).json({ message: "Create Attraction", postAttraction });
   } catch (error) {
-    console.log("error", error);
     res.status(500).json({ message: "Error adding an Attraction" });
     throw new Error();
   }
 };
 
-const updateAttraction = async (req, res) => {
+const updateAttractions = async (req, res) => {
   try {
-    const { cityName } = req.body;
-
-    // Find the city based on cityName and state
-    const cityFind = await CityModel.findOne({ City: null });
-
-    if (!cityFind) {
-      return res.status(404).json({ message: "Null City not found" });
-    }
-
-    // Update the attraction with the city ID
-    const updateData = { ...req.body, city: city._id };
-
-    const updateOneAttraction = await AttractionModel.findByIdAndUpdate(
+    const updateAttraction = await AttractionModel.findByIdAndUpdate(
       req.params.id,
-      updateData,
-      { new: true, runValidators: true }
+      req.body,
+      { new: true }
+    );
+    res
+      .status(200)
+      .json({ message: "Updated the Attraction", updateAttraction });
+  } catch (error) {
+    res.status(500).json({ message: "Error Updating Attraction" });
+    throw new Error();
+  }
+};
+
+const photosAdd = async (req, res) => {
+  try {
+    const { Attraction_Name } = req.body;
+
+    const { arrayPhotos } = await DuckDuckGoImageSearch(Attraction_Name);
+    console.log("arrayPhotos", arrayPhotos);
+
+    const updateAttraction = await AttractionModel.findByIdAndUpdate(
+      req.params.id,
+      { Photos: arrayPhotos },
+      { new: true }
     );
 
-    if (!updateOneAttraction) {
-      return res.status(404).json({ message: "Attraction not found" });
-    }
-
-    // Populate the necessary fields
-    await updateOneAttraction.populate("city").populate("state").execPopulate();
-
-    res.status(200).json({
-      message: "Updated and Populated Attraction",
-      updateOneAttraction,
-    });
+    res
+      .status(200)
+      .json({ message: "Updated the Attraction", updateAttraction });
   } catch (error) {
-    console.log("Error updating attraction:", error);
-    res.status(500).json({ message: "Error updating attraction", error });
+    res.status(500).json({ message: "Error Updating Attraction" });
+    throw new Error();
   }
 };
 
 module.exports = {
   getAllAttractions,
   createAllAttractions,
-  updateAttraction,
+  updateAttractions,
+  photosAdd,
 };
