@@ -67,6 +67,9 @@ export default {
             "background-color": "#000000",
             "border": "none",
           },
+          ".bg-black-light":{
+            "background-color": "#000000",
+          },
           ".blue-light": {
             "color": "#24758F",
           },
