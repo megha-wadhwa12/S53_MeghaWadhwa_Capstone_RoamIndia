@@ -9,6 +9,7 @@ import { deleteCookie } from "./../ManageCookies";
 import ThemeComponent from "./ThemeComponent";
 import ProfilePicture from './../assets/BlankProfilePicture.png'
 import BlueLogo from './../assets/RoamIndiaLogoBlue.png'
+import WriteReview from "./WriteReview";
 
 const Navbar: React.FC = () => {
   const { user, loginWithRedirect } = useAuth0();
@@ -18,7 +19,7 @@ const Navbar: React.FC = () => {
     loginSuccessful: false,
     loginDone: true,
   };
-  const { theme} = appContext || { theme: 'light'};
+  const { theme } = appContext || { theme: 'light' };
 
   return (
     <div>
@@ -97,30 +98,6 @@ const Navbar: React.FC = () => {
                   Sign up
                 </button>
               ) : (
-                // <button
-                //   className="inline-flex text-white h-24 lg:py-5 py-2.5 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-white-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 w-[8rem] text-xs  lg:w-[10rem] lg:text-[14px]"
-                // >
-                //   Log Out
-                // </button>
-                // <div className="dropdown dropdown-end">
-                //   <div tabIndex={0} role="button"><button className="avatar">
-                //     <div className="w-10 rounded-full">
-                //       <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                //     </div>
-                //   </button></div>
-                //   <ul
-                //     tabIndex={0}
-                //     className="menu dropdown-content bg-base-100 rounded-box z-[1] mt-4 w-52 p-2 shadow">
-                //     <li><a>Dark Mode</a></li>
-                //     <li><a onClick={() => {
-                //       logout({
-                //         logoutParams: { returnTo: window.location.origin },
-                //       });
-                //       deleteCookie("username");
-                //     }}>Logout</a></li>
-                //   </ul>
-                // </div>
-
                 <div className="dropdown dropdown-end dropdown-hover">
                   <button
                     id="dropdownUserAvatarButton"
@@ -141,15 +118,17 @@ const Navbar: React.FC = () => {
                   >
                     <div className="px-4 py-3 text-sm text-gray-900 dark:text-white capitalize">
                       <div>{user?.nickname}</div>
-                      <div className="font-medium truncate">{user?.email}</div>
+                      <div className="font-medium lowercase truncate">{user?.email}</div>
                     </div>
                     <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownUserAvatarButton">
                       <li>
                         <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Complete Your Profile</a>
                       </li>
-                      {/* <li>
-                        <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-                      </li> */}
+                      <li>
+                        <Link to={"/writereview"}>
+                          <a className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Write a Review</a>
+                        </Link>
+                      </li>
                       <ThemeComponent />
                     </ul>
                     <div className="py-2">

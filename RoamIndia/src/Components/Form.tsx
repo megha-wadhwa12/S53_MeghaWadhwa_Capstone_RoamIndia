@@ -4,7 +4,7 @@ import StarRating from './Star'
 const Form: React.FC = () => {
     return (
         <div>
-            <form className="w-/12 mx-auto p-6">
+            <form className=" mx-auto p-6">
                 <div className="mb-8 flex flex-col gap-2">
                     <label className="block text-2xl font-medium blue-light blue">How would you rate your experience?</label>
                     <StarRating />

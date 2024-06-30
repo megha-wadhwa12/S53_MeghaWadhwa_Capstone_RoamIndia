@@ -26,7 +26,7 @@ const WriteReview: React.FC = () => {
                     </div>
                 </div>
                 <div
-                    className="inline-block h-full my-20 w-[0.05vw] self-stretch bg-gray-300 bg-white/50"></div>
+                    className="inline-block h-full my-20 w-[0.05vw] self-stretch bg-gray-200"></div>
                 <div className='w-6/12 flex flex-col gap-12'><Form /></div>
             </div>
         </div>
