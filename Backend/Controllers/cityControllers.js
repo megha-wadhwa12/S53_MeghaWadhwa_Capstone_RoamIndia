@@ -98,4 +98,20 @@ const createAllCities = async (req, res) => {
   }
 };
 
-module.exports = { getAllCities, createAllCities };
+const updateCities = async (req, res) => {
+  try {
+    const updateCity = await CityModel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    res
+      .status(200)
+      .json({ message: "Updated the City", updateCity });
+  } catch (error) {
+    console.log("error", error);
+    res.status(500).json({ message: "Error Updating City" });
+  }
+};
+
+module.exports = { getAllCities, createAllCities, updateCities };

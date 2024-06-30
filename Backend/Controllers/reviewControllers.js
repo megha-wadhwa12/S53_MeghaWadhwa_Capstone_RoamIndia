@@ -73,8 +73,25 @@ const addReview = async (req, res) => {
   }
 };
 
+const updateReviews = async (req, res) => {
+  try {
+    const updateReview = await ReviewModel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    res
+      .status(200)
+      .json({ message: "Updated the review", updateReview });
+  } catch (error) {
+    console.log("error", error);
+    res.status(500).json({ message: "Error Updating Review" });
+  }
+};
+
 module.exports = {
   getAllReviews,
   getOneReview,
-  addReview
+  addReview,
+  updateReviews
 };

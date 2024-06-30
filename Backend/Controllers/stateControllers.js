@@ -27,8 +27,24 @@ const getOneState = async (req, res) => {
   }
 };
 
+const updateStates = async (req, res) => {
+  try {
+    const updateState = await StateModel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    res
+      .status(200)
+      .json({ message: "Updated the State", updateState });
+  } catch (error) {
+    console.log("error", error);
+    res.status(500).json({ message: "Error Updating State" });
+  }
+};
 
 module.exports = {
   getAllStates,
-  getOneState
+  getOneState,
+  updateStates
 };
