@@ -133,7 +133,7 @@ const AddNewUserToNonSocial = async (req, res) => {
 
     if (error) {
       const allErrors = error.details.map((e) => e.message);
-      throw new Error(allErrors);
+      // throw new Error(allErrors);
       res.status(400).json({ error: allErrors[0] });
     } else {
       const { Name, userName, emailId, profilePicture } = value;
@@ -226,7 +226,6 @@ const AddNewUserToSocial = async (req, res) => {
   } catch (error) {
     res.status(500).send(`Internal Server Error. ${error}`);
     throw new Error(error);
-
   }
 };
 

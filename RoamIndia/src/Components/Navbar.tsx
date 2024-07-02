@@ -9,7 +9,6 @@ import { deleteCookie } from "./../ManageCookies";
 import ThemeComponent from "./ThemeComponent";
 import ProfilePicture from './../assets/BlankProfilePicture.png'
 import BlueLogo from './../assets/RoamIndiaLogoBlue.png'
-import WriteReview from "./WriteReview";
 
 const Navbar: React.FC = () => {
   const { user, loginWithRedirect } = useAuth0();

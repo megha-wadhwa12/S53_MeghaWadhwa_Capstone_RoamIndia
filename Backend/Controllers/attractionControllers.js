@@ -38,7 +38,7 @@ const DuckDuckGoImageSearch = async (Attraction_Name) => {
     }
     return { imageUrl, arrayPhotos };
   } catch (error) {
-    throw new Error();
+    throw new Error(error);
   }
 };
 

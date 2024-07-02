@@ -1,10 +1,8 @@
 import React from 'react'
 import { BentoGrid, BentoGridItem } from './bento-grid'
 import Akshardham from './../assets/Akshardham.png'
-import RedFort from './../assets/RedFort.png'
 import IndiaGate from './../assets/IndiaGate.png'
 import GoldenTemple from './../assets/GoldenTemple.png'
-import AlbertHall from './../assets/AlbertHall.png'
 import Delhi from './../assets/Delhi.png'
 
 const TopAttractions: React.FC = () => {
