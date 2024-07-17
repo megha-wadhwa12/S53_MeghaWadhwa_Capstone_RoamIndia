@@ -2,6 +2,8 @@ import { User, useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 import React, { createContext, useLayoutEffect, useRef, useState } from 'react';
 import { setCookie } from "./../ManageCookies";
+import type { UploadFile } from 'antd/es/upload/interface';
+
 
 interface AppContextType {
     aboutRef: React.MutableRefObject<HTMLDivElement>;
@@ -28,6 +30,12 @@ interface AppContextType {
     setRenderData: (renderData: (StateData | CityData | AttractionData)[]) => void;
     theme: string;
     setTheme: (theme: string) => void;
+    previewOpen: boolean;
+    setPreviewOpen: (previewOpen: boolean) => void;
+    previewImage: string;
+    setPreviewImage: (previewImage: string) => void;
+    fileList: UploadFile[];
+    setFileList: (fileList: UploadFile[]) => void;
 }
 
 interface UserType {
@@ -77,7 +85,6 @@ export interface AttractionData {
 
 const ParentContext: React.FC<ParentContextProps> = ({ children }) => {
     const { user, isAuthenticated, isLoading } = useAuth0();
-    console.log('user', user)
     const aboutRef = useRef<HTMLDivElement>(document.createElement('div'));
     const [loginDone, setLoginDone] = useState<boolean>(true);
     const [loginSuccessful, setLoginSuccessful] = useState<boolean>(false);
@@ -90,7 +97,10 @@ const ParentContext: React.FC<ParentContextProps> = ({ children }) => {
     const [value, setValue] = useState<string>("Cellular Jail")
     const [renderData, setRenderData] = useState<Array<StateData | CityData | AttractionData>>(data);
     const [theme, setTheme] = useState<string>(localStorage.getItem('theme') || 'light');
-
+    const [previewOpen, setPreviewOpen] = useState<boolean>(false);
+    const [previewImage, setPreviewImage] = useState<string>('');
+    const [fileList, setFileList] = useState<UploadFile[]>([]);
+    
     useLayoutEffect(() => {
         document.documentElement.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme);
@@ -164,26 +174,13 @@ const ParentContext: React.FC<ParentContextProps> = ({ children }) => {
         fetchData();
     }, []);
 
-    useLayoutEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get(`https://s53-meghawadhwa-capstone-roamindia.onrender.com/api/attractions`);
-                setAttractionData(response.data);
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
-        };
-
-        fetchData();
-    }, []);
-
     const handleChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
         setSelected(e.target.value);
         console.log("Selected", e.target.value);
     };
 
     return (
-        <AppContext.Provider value={{ theme, setTheme, aboutRef, loginDone, loginSuccessful, askUser, loggedInUser, renderData, setRenderData, setAskUser, setLoginDone, setLoginSuccessful, setLoggedInUser, data, setData, selected, setSelected, cityData, setCityData, attractionData, setAttractionData, handleChange, value, setValue }}>
+        <AppContext.Provider value={{ previewOpen, setPreviewOpen, previewImage, setPreviewImage, fileList, setFileList, theme, setTheme, aboutRef, loginDone, loginSuccessful, askUser, loggedInUser, renderData, setRenderData, setAskUser, setLoginDone, setLoginSuccessful, setLoggedInUser, data, setData, selected, setSelected, cityData, setCityData, attractionData, setAttractionData, handleChange, value, setValue }}>
             {children}
         </AppContext.Provider>
     );

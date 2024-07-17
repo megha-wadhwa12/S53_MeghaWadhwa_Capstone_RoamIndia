@@ -9,7 +9,6 @@ import { deleteCookie } from "./../ManageCookies";
 import ThemeComponent from "./ThemeComponent";
 import ProfilePicture from './../assets/BlankProfilePicture.png'
 import BlueLogo from './../assets/RoamIndiaLogoBlue.png'
-import WriteReview from "./WriteReview";
 
 const Navbar: React.FC = () => {
   const { user, loginWithRedirect } = useAuth0();
@@ -126,7 +125,7 @@ const Navbar: React.FC = () => {
                       </li>
                       <li>
                         <Link to={"/writereview"}>
-                          <a className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Write a Review</a>
+                          <div className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Write a Review</div>
                         </Link>
                       </li>
                       <ThemeComponent />

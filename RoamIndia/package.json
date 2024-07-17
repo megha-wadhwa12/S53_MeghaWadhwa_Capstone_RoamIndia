@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@auth0/auth0-react": "^2.2.4",
+    "antd": "^5.19.0",
+    "antd-img-crop": "^4.22.0",
     "auth0": "^4.4.0",
     "axios": "^1.6.8",
     "clsx": "^2.1.1",
