@@ -28,33 +28,30 @@ const getAllUsers = async (req, res) => {
     const AllNonSocialUsers = await UserModel.find({});
     const AllSocialUsers = await UserSocialModel.find({});
     const AllUsers = [...AllNonSocialUsers, ...AllSocialUsers];
-    console.log("AllUsers", AllUsers);
     res.status(200).json(AllUsers);
   } catch (error) {
-    console.log("error", error);
     res.status(500).json(error);
+    throw new Error(error);
   }
 };
 
 const getAllNonSocialUsers = async (req, res) => {
   try {
     const AllUsers = await UserModel.find({});
-    console.log("AllUsers", AllUsers);
     res.status(200).json(AllUsers);
   } catch (error) {
-    console.log("error", error);
     res.status(500).json(error);
+    throw new Error(error);
   }
 };
 
 const getAllSocialUsers = async (req, res) => {
   try {
     const AllUsers = await UserSocialModel.find({});
-    console.log("AllUsers", AllUsers);
     res.status(200).json(AllUsers);
   } catch (error) {
-    console.log("error", error);
     res.status(500).json(error);
+    throw new Error(error);
   }
 };
 
@@ -68,8 +65,8 @@ const getOneUser = async (req, res) => {
     }
     res.status(200).json({ message: `See User for ${req.params.id}`, OneUser });
   } catch (error) {
-    console.log("error", error);
     res.status(500).json({ message: "Error fetching single User" });
+    throw new Error(error);
   }
 };
 
@@ -123,16 +120,20 @@ const AddNewUserToNonSocial = async (req, res) => {
     const { username } = authUser;
     const { name, email, profilePicture } = user;
     const { error, value } = UserValidationSchema.validate(
-      { Name: name, userName: username, emailId: email, profilePicture: profilePicture },
+      {
+        Name: name,
+        userName: username,
+        emailId: email,
+        profilePicture: profilePicture,
+      },
       {
         abortEarly: false,
       }
     );
 
     if (error) {
-      console.log(error);
       const allErrors = error.details.map((e) => e.message);
-      console.log({ error: allErrors });
+      // throw new Error(allErrors);
       res.status(400).json({ error: allErrors[0] });
     } else {
       const { Name, userName, emailId, profilePicture } = value;
@@ -163,8 +164,8 @@ const AddNewUserToNonSocial = async (req, res) => {
       }
     }
   } catch (error) {
-    console.log("error", error);
     res.status(500).send(`Internal Server Error. ${error}`);
+    throw new Error(error);
   }
 };
 
@@ -172,14 +173,18 @@ const AddNewUserToSocial = async (req, res) => {
   try {
     const { name, username, email, profilePicture } = req.body;
     const { error, value } = UserValidationSchema.validate(
-      { Name: name, userName: username, emailId: email, profilePicture: profilePicture },
+      {
+        Name: name,
+        userName: username,
+        emailId: email,
+        profilePicture: profilePicture,
+      },
       {
         abortEarly: false,
       }
     );
 
     if (error) {
-      console.log(error);
       const allErrors = error.details.map((e) => e.message);
       console.log({ error: allErrors });
       res.status(400).json({ error: allErrors[0] });
@@ -195,7 +200,7 @@ const AddNewUserToSocial = async (req, res) => {
         userName,
         emailId,
         Favourites: [],
-        profilePicture
+        profilePicture,
       });
       const authData = {
         userName: postUser.userName,
@@ -219,8 +224,8 @@ const AddNewUserToSocial = async (req, res) => {
       }
     }
   } catch (error) {
-    console.log("error", error);
     res.status(500).send(`Internal Server Error. ${error}`);
+    throw new Error(error);
   }
 };
 
@@ -233,8 +238,8 @@ const updateUser = async (req, res) => {
     );
     res.status(200).json({ message: "Update a User", updateOneUser });
   } catch (error) {
-    console.log("error", error);
     res.status(500).json({ message: "Error Updating a User" });
+    throw new Error(error);
   }
 };
 
@@ -243,7 +248,6 @@ const deleteOneUser = async (req, res) => {
     const deleteUser =
       (await UserModel.findByIdAndDelete(req.params.id)) ||
       (await UserSocialModel.findByIdAndDelete(req.params.id));
-    console.log("deleteUser", deleteUser);
     if (deleteUser) {
       res
         .status(200)
@@ -254,8 +258,8 @@ const deleteOneUser = async (req, res) => {
         .json({ message: `User not found with ID ${req.params.id}` });
     }
   } catch (error) {
-    console.log("error", error);
     res.status(500).json({ message: "Error Deleting User" });
+    throw new Error(error);
   }
 };
 

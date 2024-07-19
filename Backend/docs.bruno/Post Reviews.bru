@@ -1,0 +1,28 @@
+meta {
+  name: Post Reviews
+  type: http
+  seq: 11
+}
+
+post {
+  url: https://s53-meghawadhwa-capstone-roamindia.onrender.com/api/reviews
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "UserName": "User9",
+    "Rating": 5,
+    "Images": [
+      "ig_zoo_park_4.jpg",
+      "ig_zoo_park_5.jpg"
+    ],
+    "UpVotes": 7,
+    "VisitedPlaceOn": "2024-01-20T10:00:00.000Z",
+    "State_Name": "Uttar Pradesh",
+    "City_Name": "Agra",
+    "Attraction_Name": "Taj Mahal",
+    "Date": "2024-06-30T16:27:15.619Z"
+  }
+}

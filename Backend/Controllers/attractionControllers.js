@@ -38,7 +38,7 @@ const DuckDuckGoImageSearch = async (Attraction_Name) => {
     }
     return { imageUrl, arrayPhotos };
   } catch (error) {
-    throw new Error();
+    throw new Error(error);
   }
 };
 
@@ -118,7 +118,6 @@ const photosAdd = async (req, res) => {
     const { Attraction_Name } = req.body;
 
     const { arrayPhotos } = await DuckDuckGoImageSearch(Attraction_Name);
-    console.log("arrayPhotos", arrayPhotos);
 
     const updateAttraction = await AttractionModel.findByIdAndUpdate(
       req.params.id,
