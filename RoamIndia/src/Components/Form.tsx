@@ -2,7 +2,7 @@ import React from 'react'
 import Star from './Star'
 import { Controller, useForm } from 'react-hook-form'
 import FileUpload from './Upload';
-import DropUpload from './DropUpload';
+// import DropUpload from './DropUpload';
 
 type Inputs = {
     rating: number;

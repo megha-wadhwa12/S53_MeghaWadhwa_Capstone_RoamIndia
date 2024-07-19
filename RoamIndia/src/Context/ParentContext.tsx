@@ -36,6 +36,8 @@ interface AppContextType {
     setPreviewImage: (previewImage: string) => void;
     fileList: UploadFile[];
     setFileList: (fileList: UploadFile[]) => void;
+    selectedPlace: string;
+    setSelectedPlace: (selectedPlace: string) => void;
 }
 
 interface UserType {
@@ -100,7 +102,10 @@ const ParentContext: React.FC<ParentContextProps> = ({ children }) => {
     const [previewOpen, setPreviewOpen] = useState<boolean>(false);
     const [previewImage, setPreviewImage] = useState<string>('');
     const [fileList, setFileList] = useState<UploadFile[]>([]);
-    
+    const [selectedPlace, setSelectedPlace] = useState<string>('')
+    console.log('selectedPlace', selectedPlace)
+
+
     useLayoutEffect(() => {
         document.documentElement.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme);
@@ -174,13 +179,26 @@ const ParentContext: React.FC<ParentContextProps> = ({ children }) => {
         fetchData();
     }, []);
 
+    useLayoutEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`https://s53-meghawadhwa-capstone-roamindia.onrender.com/api/attractions`);
+                setAttractionData(response.data);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
     const handleChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
         setSelected(e.target.value);
         console.log("Selected", e.target.value);
     };
 
     return (
-        <AppContext.Provider value={{ previewOpen, setPreviewOpen, previewImage, setPreviewImage, fileList, setFileList, theme, setTheme, aboutRef, loginDone, loginSuccessful, askUser, loggedInUser, renderData, setRenderData, setAskUser, setLoginDone, setLoginSuccessful, setLoggedInUser, data, setData, selected, setSelected, cityData, setCityData, attractionData, setAttractionData, handleChange, value, setValue }}>
+        <AppContext.Provider value={{ previewOpen, setPreviewOpen, previewImage, setPreviewImage, fileList, setFileList, theme, setTheme, aboutRef, loginDone, loginSuccessful, askUser, loggedInUser, renderData, setRenderData, setAskUser, setLoginDone, setLoginSuccessful, setLoggedInUser, data, setData, selected, setSelected, cityData, setCityData, attractionData, setAttractionData, handleChange, value, setValue, selectedPlace, setSelectedPlace }}>
             {children}
         </AppContext.Provider>
     );

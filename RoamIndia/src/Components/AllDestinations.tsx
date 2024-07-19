@@ -79,7 +79,7 @@ const AllDestinations: React.FC = () => {
             <select onChange={handleChange} id="countries" className=" bg-gray-50 drop-shadow-md border-none text-gray-900 text-md rounded-md block w-[50vw] p-3.5 mt-6">
               <option value={"state"}>State</option>
               <option value={"city"}>City</option>
-              <option value={"attractions"}>All Attractions</option>
+              <option value={"attractions"}>Attractions</option>
             </select>
           </form>
         </div>

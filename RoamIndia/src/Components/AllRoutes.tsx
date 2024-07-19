@@ -16,6 +16,7 @@ import Attraction from './Attraction'
 import States from './States'
 import Cities from './Cities'
 import WriteReview from './WriteReview'
+import SelectPlaceForReview from './SelectPlaceForReview'
 
 const AllRoutes: React.FC = () => {
   return (
@@ -33,7 +34,8 @@ const AllRoutes: React.FC = () => {
       <Route path="/addplaceform" element={<AddNewPlaceForm />} />
       <Route path="/addplace" element={<AddNewPlace />} />
       <Route path="/place" element={<Place />} />
-      <Route path="/writereview" element={<WriteReview />} />
+      <Route path="/writereview" element={<SelectPlaceForReview />} />
+      <Route path="/writereview/:attraction" element={<WriteReview />} />
       <Route path="/:state/:city/:attraction" element={<Attraction />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
