@@ -44,14 +44,8 @@ const TrendingDestinations: React.FC = () => {
 
 
     const handleCardClick = (State_Name: string) => {
-        console.log('Clicked card id:', State_Name);
         navigate(`/${State_Name}`);
         setValue(State_Name)
-        // onClick={() => {
-        //     setValue(item.State_Name)
-        //     navigate(`/${item.State_Name}`);
-        //     console.log(item.State_Name)
-        // }}
     };
     return (
         <div className=' pt-20 px-6 lg:px-20 md:px-16'>

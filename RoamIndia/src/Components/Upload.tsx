@@ -21,22 +21,6 @@ const FileUpload: React.FC = () => {
   }
   const {previewOpen, setPreviewOpen, previewImage, setPreviewImage, fileList, setFileList} = appContext
 
-
-  // useEffect(() => {
-  //   fetch('http://localhost:5001/api/uploads-list')
-  //     .then(res => res.json())
-  //     .then(files => {
-  //       const fileList = files.map((file: string, index: number) => ({
-  //         uid: `-${index}`,
-  //         name: file,
-  //         status: 'done',
-  //         url: `http://localhost:5001/uploads/${file}`,
-  //       }));
-  //       setFileList(fileList);
-  //     })
-  //     .catch(err => console.error('Error fetching uploaded files', err));
-  // }, []);
-
   const handlePreview = async (file: UploadFile) => {
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj as File);

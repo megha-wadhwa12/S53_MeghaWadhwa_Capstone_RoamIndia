@@ -12,10 +12,8 @@ const Cities: React.FC = () => {
   const { value } = appContext || { value: '' };
 
   const filteredCity = value ? cityData?.filter((e) => e.City_Name === value) : cityData;
-  console.log('filteredCity ', filteredCity);
 
   const filteredAttraction = value ? attractionData?.filter((e) => e.City.City_Name === value) : attractionData;
-  console.log('filteredAttraction ', filteredAttraction);
 
   return (
     <div className="w-full min-h-full">

@@ -12,10 +12,8 @@ const States: React.FC = () => {
   const { value } = appContext || { value: '' };
 
   const filteredState = value ? data?.filter((e) => e.State_Name === value) : data;
-  console.log('filteredState ', filteredState);
 
   const filteredAttraction = value ? attractionData?.filter((e) => e.State.State_Name === value) : attractionData;
-  console.log('filteredAttraction ', filteredAttraction);
 
   return (
     <div className="w-full min-h-full">

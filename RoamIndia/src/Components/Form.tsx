@@ -13,10 +13,8 @@ type Inputs = {
 
 const Form: React.FC = () => {
     const { register, control, handleSubmit, formState: { errors } } = useForm<Inputs>();
-    console.log('errors', errors)
 
     const formSubmitHandler = (data: Inputs) => {
-        console.log('data', data)
     }
     return (
         <div>

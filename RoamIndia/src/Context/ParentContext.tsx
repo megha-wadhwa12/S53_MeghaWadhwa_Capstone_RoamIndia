@@ -103,7 +103,6 @@ const ParentContext: React.FC<ParentContextProps> = ({ children }) => {
     const [previewImage, setPreviewImage] = useState<string>('');
     const [fileList, setFileList] = useState<UploadFile[]>([]);
     const [selectedPlace, setSelectedPlace] = useState<string>('')
-    console.log('selectedPlace', selectedPlace)
 
 
     useLayoutEffect(() => {

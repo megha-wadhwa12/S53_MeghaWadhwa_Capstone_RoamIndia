@@ -19,7 +19,6 @@ const AllDestinations: React.FC = () => {
   const handleChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (setSelected) {
       setSelected(e.target.value);
-      console.log("Selected", selected)
     } else {
       console.error('setSelected is not defined in the context.');
     }
@@ -41,13 +40,10 @@ const AllDestinations: React.FC = () => {
   useLayoutEffect(() => {
     if (selected === "city") {
       setRenderData(cityData);
-      console.log('cityData', cityData)
     } else if (selected === "attractions") {
       setRenderData(attractionData);
-      console.log('attractionData', attractionData)
     } else {
       setRenderData(data);
-      console.log('data', data)
     }
   }, [selected, cityData, attractionData, data, setRenderData]);
 
