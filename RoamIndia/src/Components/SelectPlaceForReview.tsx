@@ -1,8 +1,13 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import Navbar from './Navbar';
 import { AppContext } from '../Context/ParentContext';
-import { ReactSearchAutocomplete, Item } from 'react-search-autocomplete';
+import { ReactSearchAutocomplete } from 'react-search-autocomplete';
 import { useNavigate } from 'react-router-dom';
+
+interface Item{
+    id: string,
+    name: string
+}
 
 const SelectPlaceForReview: React.FC = () => {
     const navigate = useNavigate();

@@ -47,7 +47,7 @@ const Cities: React.FC = () => {
               {filteredAttraction.map((e) => {
                 return (
                   <div>
-                    <CardComponent attraction={e.Attraction_Name} location={e.Location} image={e.Image} state={e.State} description={e.Attraction_Description} type={e.Attraction_Type} city={e.City} />
+                    <CardComponent attraction={e.Attraction_Name} location={e.Location} image={e.Image} state={e.State.State_Name} description={e.Attraction_Description} type={e.Attraction_Type} city={e.City.City_Name} />
                   </div>
                 )
               })}
