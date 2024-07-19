@@ -15,6 +15,7 @@ const Form: React.FC = () => {
     const { register, control, handleSubmit, formState: { errors } } = useForm<Inputs>();
 
     const formSubmitHandler = (data: Inputs) => {
+        console.log('data', data)
     }
     return (
         <div>
