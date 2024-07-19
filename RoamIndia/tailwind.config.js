@@ -70,6 +70,9 @@ export default {
           ".bg-black-light":{
             "background-color": "#000000",
           },
+          ".bg-background-light":{
+            "background-color": "#CDF0EA",
+          },
           ".blue-light": {
             "color": "#24758F",
           },

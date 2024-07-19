@@ -19,7 +19,6 @@ const AllDestinations: React.FC = () => {
   const handleChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (setSelected) {
       setSelected(e.target.value);
-      console.log("Selected", selected)
     } else {
       console.error('setSelected is not defined in the context.');
     }
@@ -41,13 +40,10 @@ const AllDestinations: React.FC = () => {
   useLayoutEffect(() => {
     if (selected === "city") {
       setRenderData(cityData);
-      console.log('cityData', cityData)
     } else if (selected === "attractions") {
       setRenderData(attractionData);
-      console.log('attractionData', attractionData)
     } else {
       setRenderData(data);
-      console.log('data', data)
     }
   }, [selected, cityData, attractionData, data, setRenderData]);
 
@@ -79,7 +75,7 @@ const AllDestinations: React.FC = () => {
             <select onChange={handleChange} id="countries" className=" bg-gray-50 drop-shadow-md border-none text-gray-900 text-md rounded-md block w-[50vw] p-3.5 mt-6">
               <option value={"state"}>State</option>
               <option value={"city"}>City</option>
-              <option value={"attractions"}>All Attractions</option>
+              <option value={"attractions"}>Attractions</option>
             </select>
           </form>
         </div>

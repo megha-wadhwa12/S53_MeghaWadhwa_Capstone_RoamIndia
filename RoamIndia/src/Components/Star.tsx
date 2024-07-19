@@ -1,47 +1,66 @@
-import React, { useState } from 'react';
+import React from 'react'
+import { Rate } from 'antd';
 
-const StarRating:React.FC = () => {
-  const [rating, setRating] = useState(0);
+interface StarRatingProps {
+  value: number;
+  onChange: (value: number) => void;
+}
 
-  const handleStarClick = (newRating: number) => {
-    setRating(newRating === rating ? 0 : newRating); // Toggle rating if clicked again
-  };
-
-  const handleStarHover = (newRating: number) => {
-    setRating(newRating);
-  };
-
-  const getRatingLabel = () => {
-    if (rating === 1) return "Terrible";
-    if (rating === 2) return "Poor";
-    if (rating === 3) return "Average";
-    if (rating === 4) return "Very Good";
-    if (rating === 5) return "Excellent";
-    return "";
-  };
-
+const Star:React.FC<StarRatingProps> = ({value,onChange}) => {
   return (
-    <div className="flex items-center">
-      {[...Array(5)].map((_, index) => (
-        <button
-          key={index}
-          className={` text-5xl transition-colors duration-200 ${
-            index < rating ? 'text-yellow-400' : 'text-gray-400'
-          } hover:text-yellow-400 focus:outline-none`}
-          onMouseEnter={() => handleStarHover(index + 1)}
-          onMouseLeave={() => handleStarHover(rating)}
-          onClick={() => handleStarClick(index + 1)}
-        >
-          &#9733; {/* Unicode character for star */}
-        </button>
-      ))}
-      {rating > 0 && (
-        <span className="ml-2 text-sm">
-          {getRatingLabel()}
-        </span>
-      )}
+    <div className='w-full'>
+        <Rate allowClear={false} autoFocus defaultValue={0} className='text-3xl m-2' tooltips={["Terrible","Poor","Average","Very Good","Excellent"]}
+        value={value}
+        onChange={onChange}/>
     </div>
-  );
-};
+  )
+}
 
-export default StarRating;
+export default Star
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React from 'react';
+
+// interface StarRatingProps {
+//   value: number;
+//   onChange: (value: number) => void;
+// }
+
+// const StarRating: React.FC<StarRatingProps> = ({ value, onChange }) => {
+//   const handleClick = (rating: number) => {
+//     onChange(rating);
+//   };
+
+//   return (
+//     <div className="flex">
+//       {[1, 2, 3, 4, 5].map((star) => (
+//         <svg
+//           key={star}
+//           className={`w-10 h-10 cursor-pointer ${
+//             star <= value ? 'text-yellow-500' : 'text-gray-300'
+//           }`}
+//           fill="currentColor"
+//           viewBox="0 0 24 24"
+//           onClick={() => handleClick(star)}
+//         >
+//           <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+//         </svg>
+//       ))}
+//     </div>
+//   );
+// };
+
+// export default StarRating;

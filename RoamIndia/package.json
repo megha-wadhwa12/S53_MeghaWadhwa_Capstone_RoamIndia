@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@auth0/auth0-react": "^2.2.4",
+    "antd": "^5.19.0",
+    "antd-img-crop": "^4.22.0",
     "auth0": "^4.4.0",
     "axios": "^1.6.8",
     "clsx": "^2.1.1",
@@ -20,6 +22,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.52.0",
     "react-router-dom": "^6.22.3",
+    "react-search-autocomplete": "^8.5.2",
     "react-star-ratings": "^2.3.0",
     "tailwind-merge": "^2.3.0"
   },

@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getAllAttractions,createAllAttractions, updateAttractions, photosAdd } = require("../Controllers/attractionControllers");
+const { getAllAttractions, createAllAttractions, updateAttractions, photosAdd } = require("../Controllers/attractionControllers");
 
 router.get("/",getAllAttractions)
 
